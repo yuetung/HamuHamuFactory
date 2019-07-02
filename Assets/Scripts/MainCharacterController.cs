@@ -5,6 +5,8 @@ using UnityEngine;
 public class MainCharacterController : MonoBehaviour
 {
     public float moveSpeed = 10f;
+    public float minPos = 0f;
+    public float maxPos = 0f;
     private Animator _animator;
     private RectTransform _rect;
     private AudioSource _audio;
@@ -24,7 +26,7 @@ public class MainCharacterController : MonoBehaviour
         float moveVertical = Input.GetAxis("Vertical");
         
         Vector2 movement = new Vector2(moveHorizontal, moveVertical);
-        if (moveHorizontal != 0 || moveVertical != 0)
+        if (moveHorizontal != 0)
         {
             _animator.SetBool("isMoving", true);
             if (moveHorizontal > 0)
@@ -35,11 +37,19 @@ public class MainCharacterController : MonoBehaviour
             {
                 _rect.localScale = new Vector3(1, 1, 1);
             }
-            _rect.position = _rect.position + new Vector3(moveHorizontal, moveVertical) * moveSpeed;
+            
+            if ((moveHorizontal > 0 && _rect.position.x <= maxPos) || moveHorizontal < 0 && _rect.position.x >= minPos)
+            {
+                _rect.position = _rect.position + new Vector3(moveHorizontal, 0) * moveSpeed;
+            }     
         }
         else
         {
             _animator.SetBool("isMoving", false);
+        }
+        if(moveVertical != 0)
+        {
+            // do vertical turning of sprite here
         }
     }
 
