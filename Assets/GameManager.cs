@@ -135,7 +135,7 @@ public class GameManager : MonoBehaviour
             {
                 newExp -= expRequired[currentLevel - 1];
                 currentLevel += 1;
-                //TODO: play level up animation here
+                LevelUp();
             }
             currentExp = newExp;
         }
@@ -192,5 +192,68 @@ public class GameManager : MonoBehaviour
             }
         }
         return l;
+    }
+
+    public void LevelUp()
+    {
+        // play level up animation here
+    }
+
+    public void GainWorkstation(string name, string displayed_name, int amount=1, bool show_message = false)
+    {
+        if (PlayerPrefs.HasKey(name))
+        {
+            int inventory = PlayerPrefs.GetInt(name);
+            PlayerPrefs.SetInt(name, inventory + amount);
+        }
+        else
+        {
+            PlayerPrefs.SetInt(name, amount);
+        }
+        Debug.Log("Gain " + amount.ToString() + " " + name + " workstation (Total=" + PlayerPrefs.GetInt(name)+")");
+        if (show_message)
+        {
+            int inventory = PlayerPrefs.GetInt(name);
+            string message = "You gained " + amount + " " + displayed_name + "!\n total: " + inventory;
+            // show a message here
+        }
+    }
+
+    public void GainMaterial(string name, int amount, string displayed_name = "", bool show_message = false)
+    {
+        if (PlayerPrefs.HasKey(name))
+        {
+            int inventory = PlayerPrefs.GetInt(name);
+            PlayerPrefs.SetInt(name, inventory + amount);
+        }
+        else
+        {
+            PlayerPrefs.SetInt(name, amount);
+        }
+        Debug.Log("Gain " + amount.ToString() + " " + name + " material (Total=" + PlayerPrefs.GetInt(name) + ")");
+        if (show_message)
+        {
+            int inventory = PlayerPrefs.GetInt(name);
+            string message = "You gained " + amount + " " + displayed_name + "!\n total: " + inventory;
+            // show a message here
+        }
+    }
+
+    public void LossMaterial(string name, int amount, string displayed_name = "", bool show_message = false)
+    {
+        if (!PlayerPrefs.HasKey(name))
+        {
+            Debug.LogWarning("Error!!! Trying to remove material "+name+" but it does not exist");
+            return;
+        }
+        int new_inventory = PlayerPrefs.GetInt(name)-amount;
+        if (new_inventory <= 0)
+        {
+            PlayerPrefs.DeleteKey(name);
+        }
+        else
+        {
+            PlayerPrefs.SetInt(name, new_inventory);
+        }
     }
 }

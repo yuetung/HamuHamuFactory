@@ -14,7 +14,7 @@ public class CameraMovement : MonoBehaviour
     void Start()
     {
         camHalfWidth = GetComponent<Camera>().orthographicSize * ((float)Screen.width / Screen.height) - delta;
-        Debug.Log(camHalfWidth);
+        //Debug.Log(camHalfWidth);
     }
 
     // Update is called once per frame

@@ -11,27 +11,27 @@ public class WorkstationConstructionMasterController : MonoBehaviour
     [System.Serializable]
     public class ShopItemEntry
     {
-        public string name;
+        public string display_name;
+        public string variable_name;
+        public int level_requirement;
         public int base_price;
-        public int numWorkers;
         public Sprite sprite;
     }
     public ShopItemEntry[] fixedShopItemEntries;
-    public ShopItemEntry[] variableShopItemEntries;
-    private int slots=5; // max = 5
+    //public ShopItemEntry[] variableShopItemEntries;
+    //private int slots=2; // max = 5
+    private bool started = false;
 
+    private void OnEnable()
+    {
+        if (started)
+            ResetAllWorkstationItemControllerAfterPurchase();
+    }
     // Start is called before the first frame update
     void Start()
     {
-        if (PlayerPrefs.HasKey("ConstructionSlots"))
-        {
-            slots = PlayerPrefs.GetInt("ConstructionSlots");
-        }
-        else //new game
-        {
-            PlayerPrefs.SetInt("ConstructionSlots", slots);
-        }
         PickTodayWorkstationShopItems();
+        started = true;
     }
 
     // Update is called once per frame
@@ -44,44 +44,49 @@ public class WorkstationConstructionMasterController : MonoBehaviour
     public void PickTodayWorkstationShopItems()
     {
         // hide all itemControllers not in-use
-        for(int i=slots; i<itemControllers.Length; i++)
+        for(int i= fixedShopItemEntries.Length; i<itemControllers.Length; i++)
         {
             itemControllers[i].gameObject.SetActive(false);
         }
-        // first 2 item are fixed
-        for(int i=0; i<2; i++)
+        // first few item are fixed
+        for(int i=0; i<fixedShopItemEntries.Length; i++)
         {
-            itemControllers[i].SetWorkstationShopItem(fixedShopItemEntries[i].name, fixedShopItemEntries[i].base_price,
-                fixedShopItemEntries[i].numWorkers, fixedShopItemEntries[i].sprite);
+            itemControllers[i].SetWorkstationShopItem(fixedShopItemEntries[i].display_name, fixedShopItemEntries[i].variable_name,
+                fixedShopItemEntries[i].level_requirement, fixedShopItemEntries[i].base_price, fixedShopItemEntries[i].sprite);
         }
         // for rest of shopitems, picks #slots items from shopItemEntries, randomized; 
-        if (PlayerPrefs.HasKey("todayWorkstationName_0") && PlayerPrefs.HasKey("todayWorkstationVarDate") &&
-            PlayerPrefs.GetString("todayWorkstationVarDate").Equals(DateTime.Now.Date.ToShortDateString()))
-        {
-            // If today's variable shop items has already been initialized
-            {
-                for(int i=0; i < slots - 2; i++)
-                {
-                    int index = PlayerPrefs.GetInt("todayWorkstationName_" + i);
-                    ShopItemEntry s = variableShopItemEntries[index];
-                    itemControllers[i + 2].SetWorkstationShopItem(s.name, s.base_price, s.numWorkers, s.sprite);
-                }
-            }
-        }
-        else
-        {
-            // If today's variable shop items has not already been initialized
-            System.Random rnd = new System.Random();
-            int j = 0;
-            foreach (ShopItemEntry s in variableShopItemEntries.OrderBy(x => rnd.Next()).Take(slots - 2))
-            {
-                itemControllers[j + 2].SetWorkstationShopItem(s.name, s.base_price, s.numWorkers, s.sprite);
-                // store today's selection in playerprefs
-                PlayerPrefs.SetInt("todayWorkstationName_" + j, Array.IndexOf(variableShopItemEntries, s));
-                j++;
-            }
-            PlayerPrefs.SetString("todayWorkstationVarDate", DateTime.Now.Date.ToShortDateString());
-        }
+        //if (PlayerPrefs.HasKey("todayWorkstationName_0") && PlayerPrefs.HasKey("todayWorkstationVarDate") &&
+        //    PlayerPrefs.GetString("todayWorkstationVarDate").Equals(DateTime.Now.Date.ToShortDateString()))
+        //{
+        //    // If today's variable shop items has already been initialized
+        //    {
+        //        for(int i=0; i < Mathf.Min(slots - fixedShopItemEntries.Length, variableShopItemEntries.Length); i++)
+        //        {
+        //            //Debug.Log("oops");
+        //            int index = PlayerPrefs.GetInt("todayWorkstationName_" + i);
+        //            ShopItemEntry s = variableShopItemEntries[index];
+        //            itemControllers[i + fixedShopItemEntries.Length].SetWorkstationShopItem(s.display_name, s.variable_name,
+        //        s.level_requirement, s.base_price, s.sprite);
+        //        }
+        //    }
+        //}
+        //else
+        //{
+        //    // If today's variable shop items has not already been initialized
+        //    System.Random rnd = new System.Random();
+        //    int j = 0;
+        //    foreach (ShopItemEntry s in variableShopItemEntries.OrderBy(x => rnd.Next())
+        //        .Take(Mathf.Min(slots - fixedShopItemEntries.Length, variableShopItemEntries.Length)))
+        //    {
+        //        //Debug.Log("oops");
+        //        itemControllers[j + fixedShopItemEntries.Length].SetWorkstationShopItem(s.display_name, s.variable_name,
+        //        s.level_requirement, s.base_price, s.sprite);
+        //        // store today's selection in playerprefs
+        //        PlayerPrefs.SetInt("todayWorkstationName_" + j, Array.IndexOf(variableShopItemEntries, s));
+        //        j++;
+        //    }
+        //    PlayerPrefs.SetString("todayWorkstationVarDate", DateTime.Now.Date.ToShortDateString());
+        //}
     }
 
     public void ResetAllWorkstationItemControllerAfterPurchase()
