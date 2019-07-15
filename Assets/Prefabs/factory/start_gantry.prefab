@@ -174,6 +174,7 @@ GameObject:
   - component: {fileID: 6398418712462516271}
   - component: {fileID: 4884184087493517128}
   - component: {fileID: 6132590224409350085}
+  - component: {fileID: 567107224}
   m_Layer: 5
   m_Name: start_gantry
   m_TagString: Untagged
@@ -188,7 +189,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5104475028525645248}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -241,6 +242,24 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &567107224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5104475028525645248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98171fdcfff01fa4d88bfefdc69544a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  childAnimators:
+  - {fileID: 4886118080969027101}
+  - {fileID: 7694750902226119652}
+  isStarted: 0
+  isOperating: 0
+  triggerAction: 0
 --- !u!1 &5829746156527964560
 GameObject:
   m_ObjectHideFlags: 0
