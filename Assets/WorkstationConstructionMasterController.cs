@@ -21,6 +21,17 @@ public class WorkstationConstructionMasterController : MonoBehaviour
     //public ShopItemEntry[] variableShopItemEntries;
     //private int slots=2; // max = 5
     private bool started = false;
+    public Dictionary<string, ShopItemEntry> var_name_to_item_entry;
+
+    private void Awake()
+    {
+        var_name_to_item_entry = new Dictionary<string, ShopItemEntry>();
+        for (int i = 0; i < fixedShopItemEntries.Length; i++)
+        {
+            print(fixedShopItemEntries[i].variable_name);
+            var_name_to_item_entry[fixedShopItemEntries[i].variable_name] = fixedShopItemEntries[i];
+        }
+    }
 
     private void OnEnable()
     {
@@ -32,6 +43,7 @@ public class WorkstationConstructionMasterController : MonoBehaviour
     {
         PickTodayWorkstationShopItems();
         started = true;
+        gameObject.SetActive(false);
     }
 
     // Update is called once per frame

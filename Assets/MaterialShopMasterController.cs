@@ -20,13 +20,22 @@ public class MaterialShopMasterController : MonoBehaviour
     //public ShopItemEntry[] variableShopItemEntries;
     //private int slots = 2; // max = 5
     //private bool started = false;
+    public Dictionary<string, ShopItemEntry> var_name_to_item_entry;
 
-    
+    private void Awake()
+    {
+        var_name_to_item_entry = new Dictionary<string, ShopItemEntry>();
+        for (int i = 0; i < fixedShopItemEntries.Length; i++)
+        {
+            var_name_to_item_entry[fixedShopItemEntries[i].variable_name] = fixedShopItemEntries[i];
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         PickTodayMaterialShopItems();
-        
+        gameObject.SetActive(false);
     }
 
     // Update is called once per frame

@@ -19,9 +19,10 @@ public class GameManager : MonoBehaviour
     public Text levelText;
     public Text ExpText;
     public BarAnimator expBarController;
-    public bool resetPlayerPrefs = false;
+    public RoomSizeManager roomSizeManager;
     private Coroutine disablemoneyOnHandChangesTextCoroutine = null;
     private Coroutine changeMoneyToCoroutine = null;
+    public bool resetPlayerPrefs = false;
 
     public class Employee
     {
@@ -197,6 +198,9 @@ public class GameManager : MonoBehaviour
     public void LevelUp()
     {
         // play level up animation here
+        if (currentLevel%1==0)
+            roomSizeManager.AddRoom();  // add room every 1 levels?
+        Debug.Log("level up!");
     }
 
     public void GainWorkstation(string name, string displayed_name, int amount=1, bool show_message = false)
@@ -254,6 +258,29 @@ public class GameManager : MonoBehaviour
         else
         {
             PlayerPrefs.SetInt(name, new_inventory);
+        }
+    }
+
+    public void GainProductionJob(string name, string displayed_name, bool show_message = false)
+    {
+        if (PlayerPrefs.HasKey(name))
+        {
+            Debug.Log("Production job already available");
+            if (show_message)
+            {
+                string message = "Production job " + name + " already available";
+                // show a message here
+            }
+        }
+        else
+        {
+            PlayerPrefs.SetInt(name,1);
+            Debug.Log("Obtained a new production job: " + name + " !!!");
+            if (show_message)
+            {
+                string message = "Obtained a production job: " + name + " !!!";
+                // show a message here
+            }
         }
     }
 }

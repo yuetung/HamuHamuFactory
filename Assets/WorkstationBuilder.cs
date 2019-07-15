@@ -9,6 +9,7 @@ public class WorkstationBuilder : MonoBehaviour
     public GameObject conveyor;
     public GameObject box;
     public float y_pos = -660f;
+    public JobRequestMasterController jobRequestMasterController;
     private Dictionary<string, Workstation> workstationNameDict = new Dictionary<string, Workstation>();
 
     [System.Serializable]
@@ -33,7 +34,15 @@ public class WorkstationBuilder : MonoBehaviour
             w.Initialize();
             workstationNameDict.Add(w.name, w);
         }
-        Build(new List<string> {"saw","drill","drill"});
+        // saves to PlayerPrefs the current production job
+        
+        if (PlayerPrefs.HasKey("currentProductionJob"))
+        {
+            List<string> currentStations = jobRequestMasterController.GetWorkstationString(PlayerPrefs.GetString("currentProductionJob"));
+            Build(currentStations);
+        }
+        
+        //Build(new List<string> {"saw","drill","drill"});
     }
 
     // Update is called once per frame
@@ -42,13 +51,14 @@ public class WorkstationBuilder : MonoBehaviour
         
     }
 
-    public void Build(List<string> names, float startin_pos = 0f)
+    public void Build(List<string> names, float startin_pos = 500f)
     {
+        EraseAll();
         float current_x_pos = startin_pos;
-        // Create a box
-        GameObject bi = Instantiate(box, transform);
-        bi.GetComponent<RectTransform>().position = new Vector2(current_x_pos, y_pos);
-        current_x_pos += bi.GetComponent<RectTransform>().rect.width;
+        //// Create a box
+        //GameObject bi = Instantiate(box, transform);
+        //bi.GetComponent<RectTransform>().position = new Vector2(current_x_pos, y_pos);
+        //current_x_pos += bi.GetComponent<RectTransform>().rect.width;
         foreach (string n in names)
         {
             // Create a workstation
@@ -61,24 +71,30 @@ public class WorkstationBuilder : MonoBehaviour
             conv.GetComponent<RectTransform>().position = new Vector2(current_x_pos, y_pos);
             current_x_pos += conv.GetComponent<RectTransform>().rect.width;
         }
-        // Create a box
-        GameObject bo = Instantiate(box, transform);
-        bo.GetComponent<RectTransform>().position = new Vector2(current_x_pos, y_pos);
-        current_x_pos += bo.GetComponent<RectTransform>().rect.width;
+        //// Create a box
+        //GameObject bo = Instantiate(box, transform);
+        //bo.GetComponent<RectTransform>().position = new Vector2(current_x_pos, y_pos);
+        //current_x_pos += bo.GetComponent<RectTransform>().rect.width;
     }
 
     public float GetRequiredWidth(List<string> names)
     {
         float req_width = 0;
-        req_width += 2*box.GetComponent<RectTransform>().rect.width;
+        //req_width += 2*box.GetComponent<RectTransform>().rect.width;
         foreach (string n in names)
         {
             Workstation w = workstationNameDict[n];
             req_width += w.effective_width;
             req_width += conveyor.GetComponent<RectTransform>().rect.width;
         }
-        return 0;
+        return req_width/1000f+1;
     }
 
-    
+    public void EraseAll()
+    {
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
+    }
 }

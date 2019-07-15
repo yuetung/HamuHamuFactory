@@ -5,7 +5,7 @@ using UnityEngine;
 public class FactoryEntity : MonoBehaviour
 {
     [SerializeField]
-    private List<Animator> childAnimators;
+    private List<Animator> childAnimators = null;
 
     //test variables: please delete and use function in future
     public bool isStarted=false;
