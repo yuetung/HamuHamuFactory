@@ -46,8 +46,8 @@ public class JobRequestMasterController : MonoBehaviour
         started = true;
         gameObject.SetActive(false);
         GameManager.instance.GainProductionJob("wooden_table", "Wooden Table");
-        GameManager.instance.GainProductionJob("wooden_table_L", "Wooden Table");
-        GameManager.instance.GainProductionJob("yellow_star", "Wooden Table");
+        GameManager.instance.GainProductionJob("wooden_table_L", "Big Wooden Table");
+        
     }
 
     // Update is called once per frame

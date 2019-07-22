@@ -17091,6 +17091,18 @@ MonoBehaviour:
     material_names:
     - steel
     material_nums: 0f000000
+  - display_name: Box
+    variable_name: box
+    unit_reward: 30
+    sprite: {fileID: 21300000, guid: 95916d325f803714383a711231e032bd, type: 3}
+    production_time: 1
+    workstation_names:
+    - hammer
+    - laser
+    workstation_nums: 0200000001000000
+    material_names:
+    - wood
+    material_nums: 05000000
 --- !u!1 &879053042
 GameObject:
   m_ObjectHideFlags: 0
@@ -38258,6 +38270,8 @@ MonoBehaviour:
   expBarController: {fileID: 835727270}
   roomSizeManager: {fileID: 879053047}
   resetPlayerPrefs: 0
+  messageBoard: {fileID: 0}
+  messageBoardText: {fileID: 0}
 --- !u!4 &1982940242
 Transform:
   m_ObjectHideFlags: 0
@@ -41876,6 +41890,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: World Map
       objectReference: {fileID: 0}
+    - target: {fileID: 7364606138456931480, guid: 2c3f9c6f9632d3d4ca81d5f36bbe7a6c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7364606138456931481, guid: 2c3f9c6f9632d3d4ca81d5f36bbe7a6c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -41980,6 +41999,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3544883090700633406, guid: 2c3f9c6f9632d3d4ca81d5f36bbe7a6c,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7364606136514197420, guid: 2c3f9c6f9632d3d4ca81d5f36bbe7a6c,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8133041566688483843, guid: 2c3f9c6f9632d3d4ca81d5f36bbe7a6c,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c3f9c6f9632d3d4ca81d5f36bbe7a6c, type: 3}

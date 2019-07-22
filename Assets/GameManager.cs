@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
     private Coroutine disablemoneyOnHandChangesTextCoroutine = null;
     private Coroutine changeMoneyToCoroutine = null;
     public bool resetPlayerPrefs = false;
+    public GameObject messageBoard;
+    public Text messageBoardText;
 
     public class Employee
     {
@@ -239,7 +241,8 @@ public class GameManager : MonoBehaviour
         {
             int inventory = PlayerPrefs.GetInt(name);
             string message = "You gained " + amount + " " + displayed_name + "!\n total: " + inventory;
-            // show a message here
+            messageBoard.SetActive(true);
+            messageBoardText.text = message;
         }
     }
 
@@ -268,18 +271,20 @@ public class GameManager : MonoBehaviour
             Debug.Log("Production job already available");
             if (show_message)
             {
-                string message = "Production job " + name + " already available";
-                // show a message here
+                string message = "Production job " + displayed_name + " already available";
+                messageBoard.SetActive(true);
+                messageBoardText.text = message;
             }
         }
         else
         {
             PlayerPrefs.SetInt(name,1);
-            Debug.Log("Obtained a new production job: " + name + " !!!");
+            Debug.Log("Obtained a new production job: " + displayed_name + " !!!");
             if (show_message)
             {
-                string message = "Obtained a production job: " + name + " !!!";
-                // show a message here
+                string message = "Obtained a production job: " + displayed_name + " !!!";
+                messageBoard.SetActive(true);
+                messageBoardText.text = message;
             }
         }
     }

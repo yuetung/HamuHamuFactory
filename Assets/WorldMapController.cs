@@ -17,9 +17,9 @@ public class WorldMapController : MonoBehaviour
         
     }
 
-    public void goToConstructionShop()
+    public void goToPlace(string sceneName)
     {
-        SceneManager.LoadScene("Construction Shop", LoadSceneMode.Single);
+        SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
     }
 
     public void goToFactory()
