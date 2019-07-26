@@ -38,11 +38,11 @@ Material:
     - _UseUIAlphaClip: 0
     m_Colors:
     - _BGColor: {r: 1, g: 1, b: 1, a: 0.75}
-    - _BorderColor: {r: 0, g: 0, b: 0, a: 1}
+    - _BorderColor: {r: 0, g: 0, b: 0, a: 0}
     - _ClipRect: {r: -32767, g: -32767, b: 32767, a: 32767}
     - _Color: {r: 0.990566, g: 0.990566, b: 0.990566, a: 1}
     - _EmptyColor: {r: 1, g: 1, b: 1, a: 0}
-    - _FillColor: {r: 0, g: 1, b: 0.03573966, a: 0.5}
+    - _FillColor: {r: 1, g: 1, b: 0.03573966, a: 0.5}
     - _NegColor: {r: 0.4433962, g: 0.4433962, b: 0.4433962, a: 0.18039216}
-    - _PosColor: {r: 0.049961407, g: 0.65882355, b: 0, a: 0.24313726}
+    - _PosColor: {r: 0.7411765, g: 0.65882355, b: 0, a: 0.24313726}
     - _SizeInfo: {r: 8, g: 2, b: 0, a: 0}
