@@ -7,13 +7,13 @@ public class ToggleBlurBg : MonoBehaviour
 {
     void OnDisable()
     {
-        Debug.Log("PrintOnDisable: script was disabled");
+        //Debug.Log("PrintOnDisable: script was disabled");
         this.gameObject.transform.parent.GetComponent<RawImage>().enabled = false;
     }
 
     void OnEnable()
     {
-        Debug.Log("PrintOnEnable: script was enabled");
+        //Debug.Log("PrintOnEnable: script was enabled");
         this.gameObject.transform.parent.GetComponent<RawImage>().enabled = true;
     }
 }
