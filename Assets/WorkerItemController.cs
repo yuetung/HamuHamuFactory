@@ -17,7 +17,9 @@ public class WorkerItemController : MonoBehaviour
     public int m_base_price;
     public int m_tier;
     public Color m_color;
+    public string m_colorStr;
     public Sprite m_sprite;
+    public int m_spriteNum;
     public List<string> m_workstations;
     public List<int> m_workstationStats;
     private Image _buttonImage;
@@ -36,7 +38,7 @@ public class WorkerItemController : MonoBehaviour
         
     }
 
-    public void SetWorkerItem(int worker_index, string name, int base_price, int tier, Color color, Sprite sprite, List<string> workstations, List<int> workstationStats)
+    public void SetWorkerItem(int worker_index, string name, int base_price, int tier, Color color, string colorStr, Sprite sprite, int spriteNum, List<string> workstations, List<int> workstationStats)
     {
         this.worker_index = worker_index;
         _image = gameObject.transform.Find("Image").GetComponent<Image>();
@@ -63,7 +65,9 @@ public class WorkerItemController : MonoBehaviour
         m_sprite = sprite;
         m_tier = tier;
         m_color = color;
+        m_colorStr = colorStr;
         m_sprite = sprite;
+        m_spriteNum = spriteNum;
         m_workstations = workstations;
         m_workstationStats = workstationStats;
         _image.sprite = sprite;
@@ -73,22 +77,26 @@ public class WorkerItemController : MonoBehaviour
         switch (tier)
         {
             case 0:
+                _tier.text = "Poor";
+                _tier.color = Color.gray;
+                break;
+            case 1:
                 _tier.text = "Average";
                 _tier.color = Color.black;
                 break;
-            case 1:
-                _tier.text = "Good";
-                _tier.color = Color.red;
-                break;
             case 2:
-                _tier.text = "Rare";
+                _tier.text = "Good";
                 _tier.color = Color.blue;
                 break;
             case 3:
-                _tier.text = "Very Rare";
-                _tier.color = Color.magenta;
+                _tier.text = "Rare";
+                _tier.color = Color.red;
                 break;
             case 4:
+                _tier.text = "Superior";
+                _tier.color = Color.magenta;
+                break;
+            case 5:
                 _tier.text = "Legendary";
                 _tier.color = Color.green;
                 break;
@@ -115,6 +123,7 @@ public class WorkerItemController : MonoBehaviour
     {
         // purchase action here
         GameManager.instance.LossMoney(m_base_price);
+        GameManager.instance.GainWorker(m_name, m_colorStr, m_spriteNum, m_workstations, m_workstationStats);
         //GameManager.instance.GainMaterial(m_variable_name, amount, m_display_name);
         //TODO: remove from playerpref and refresh here
         workerShopMasterController.RemoveWorkerFromShop(worker_index);
@@ -140,6 +149,14 @@ public class WorkerItemController : MonoBehaviour
 
     public void ShowConfirmPurchaseWindow()
     {
+        if (PlayerPrefs.HasKey("TotalNumWorkers"))
+        {
+            if (PlayerPrefs.GetInt("TotalNumWorkers") >= 12)
+            {
+                gameObject.transform.parent.Find("Show Message").gameObject.SetActive(true);
+                return;
+            }
+        }
         if (m_base_price <= GameManager.instance.moneyOnHand)
             confirmationWindowController.ShowConfirmationWindow(this, m_name, m_base_price);
     }

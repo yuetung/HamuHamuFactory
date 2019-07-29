@@ -288,4 +288,28 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
+    public void GainWorker(string name, string colorStr, int spriteNum, List<string> workstations, List<int> workstationStats, bool show_message = false)
+    {
+        if (!PlayerPrefs.HasKey("TotalNumWorkers"))
+        {
+            PlayerPrefs.SetInt("TotalNumWorkers", 0);
+        }
+        int numWorkers = PlayerPrefs.GetInt("TotalNumWorkers");
+        PlayerPrefs.SetString("workerName_" + numWorkers, name);
+        PlayerPrefs.SetString("workerColorStr_" + numWorkers, colorStr);
+        PlayerPrefs.SetInt("workerSpriteNum_" + numWorkers, spriteNum);
+        PlayerPrefs.SetString("workerProficiency0_" + numWorkers, workstations[0]);
+        PlayerPrefs.SetString("workerProficiency1_" + numWorkers, workstations[1]);
+        PlayerPrefs.SetInt("workerProficiencyStat0_" + numWorkers, workstationStats[0]);
+        PlayerPrefs.SetInt("workerProficiencyStat1_" + numWorkers, workstationStats[1]);
+        PlayerPrefs.SetInt("TotalNumWorkers", numWorkers + 1);
+        Debug.Log("Hired " + name.ToString() + " !");
+        if (show_message)
+        {
+            string message = "Hired " + name.ToString() + " !";
+            messageBoard.SetActive(true);
+            messageBoardText.text = message;
+        }
+    }
 }
