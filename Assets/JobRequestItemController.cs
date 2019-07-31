@@ -156,7 +156,9 @@ public class JobRequestItemController : MonoBehaviour
         {
             print("building line");
             PlayerPrefs.SetString("currentProductionJob", m_variable_name);
-            workstationBuilder.Build(GetWorkstationString());
+            PlayerPrefs.SetInt("ProductionRunning", 0);
+            workstationBuilder.Build(m_display_name,GetWorkstationString());
+            workstationBuilder.SaveEntitiesToPlayerPrefs();
         }
         // purchase action here
         //GameManager.instance.LossMoney(m_price * amount);

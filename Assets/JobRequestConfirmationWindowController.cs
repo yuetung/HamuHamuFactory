@@ -28,5 +28,6 @@ public class JobRequestConfirmationWindowController : MonoBehaviour
     {
         currentShopItemController.StartBuilding();
         gameObject.SetActive(false);
+        gameObject.transform.parent.gameObject.SetActive(false);
     }
 }

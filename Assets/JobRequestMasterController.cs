@@ -107,4 +107,10 @@ public class JobRequestMasterController : MonoBehaviour
         }
         return w;
     }
+
+    public string GetDisplayedName(string var_name)
+    {
+        JobItemEntry job = var_name_to_item_entry[var_name];
+        return job.display_name;
+    }
 }

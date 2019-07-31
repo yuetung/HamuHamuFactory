@@ -197,9 +197,9 @@ public class WorkerShopMasterController : MonoBehaviour
                 int workstation_index = UnityEngine.Random.Range(0, workstationNames.Count);
                 proficiency0 = workstationNames[workstation_index];
                 proficiencStat0 = 3;
-                if (workstation_index < workstationNames.Count - 1)
+                if (true)
                 {
-                    proficiency1 = workstationNames[workstation_index + 1];
+                    proficiency1 = workstationNames[(workstation_index + UnityEngine.Random.Range(1, workstationNames.Count)) % workstationNames.Count];
                     proficiencStat1 = 3;
                 }
             }
@@ -208,9 +208,9 @@ public class WorkerShopMasterController : MonoBehaviour
                 int workstation_index = UnityEngine.Random.Range(0, workstationNames.Count);
                 proficiency0 = workstationNames[workstation_index];
                 proficiencStat0 = 3;
-                if (workstation_index < workstationNames.Count - 1 && luckyNum % 2 == 0)
+                if (luckyNum % 2 == 0)
                 {
-                    proficiency1 = workstationNames[workstation_index + 1];
+                    proficiency1 = workstationNames[(workstation_index + UnityEngine.Random.Range(1, workstationNames.Count)) % workstationNames.Count]; ;
                     proficiencStat1 = UnityEngine.Random.Range(2, 4);
                 }
             }
@@ -219,9 +219,9 @@ public class WorkerShopMasterController : MonoBehaviour
                 int workstation_index = UnityEngine.Random.Range(0, workstationNames.Count);
                 proficiency0 = workstationNames[workstation_index];
                 proficiencStat0 = 3;
-                if (workstation_index < workstationNames.Count - 1 && luckyNum % 2 == 0)
+                if (luckyNum % 2 == 0)
                 {
-                    proficiency1 = workstationNames[workstation_index + 1];
+                    proficiency1 = workstationNames[(workstation_index + UnityEngine.Random.Range(1, workstationNames.Count)) % workstationNames.Count]; ;
                     proficiencStat1 = UnityEngine.Random.Range(1, 4);
                 }
             }
@@ -230,9 +230,9 @@ public class WorkerShopMasterController : MonoBehaviour
                 int workstation_index = UnityEngine.Random.Range(0, workstationNames.Count);
                 proficiency0 = workstationNames[workstation_index];
                 proficiencStat0 = UnityEngine.Random.Range(2, 4);
-                if (workstation_index < workstationNames.Count - 1 && luckyNum % 2 == 0)
+                if (luckyNum % 2 == 0)
                 {
-                    proficiency1 = workstationNames[workstation_index + 1];
+                    proficiency1 = workstationNames[(workstation_index + UnityEngine.Random.Range(1, workstationNames.Count)) % workstationNames.Count]; ;
                     proficiencStat1 = UnityEngine.Random.Range(1, 3);
                 }
             }
@@ -241,9 +241,9 @@ public class WorkerShopMasterController : MonoBehaviour
                 int workstation_index = UnityEngine.Random.Range(0, workstationNames.Count);
                 proficiency0 = workstationNames[workstation_index];
                 proficiencStat0 = UnityEngine.Random.Range(2, 4);
-                if (workstation_index < workstationNames.Count - 1 && luckyNum % 2 == 0)
+                if (luckyNum % 2 == 0)
                 {
-                    proficiency1 = workstationNames[workstation_index + 1];
+                    proficiency1 = workstationNames[(workstation_index + UnityEngine.Random.Range(1, workstationNames.Count)) % workstationNames.Count]; ;
                     proficiencStat1 = UnityEngine.Random.Range(1, 3);
                 }
             }
@@ -252,9 +252,9 @@ public class WorkerShopMasterController : MonoBehaviour
                 int workstation_index = UnityEngine.Random.Range(0, workstationNames.Count);
                 proficiency0 = workstationNames[workstation_index];
                 proficiencStat0 = UnityEngine.Random.Range(2, 4);
-                if (workstation_index < workstationNames.Count - 1 && luckyNum % 3 == 0)
+                if (luckyNum % 3 == 0)
                 {
-                    proficiency1 = workstationNames[workstation_index + 1];
+                    proficiency1 = workstationNames[(workstation_index + UnityEngine.Random.Range(1, workstationNames.Count)) % workstationNames.Count]; ;
                     proficiencStat1 = UnityEngine.Random.Range(1, 3);
                 }
             }
@@ -263,9 +263,9 @@ public class WorkerShopMasterController : MonoBehaviour
                 int workstation_index = UnityEngine.Random.Range(0, workstationNames.Count);
                 proficiency0 = workstationNames[workstation_index];
                 proficiencStat0 = UnityEngine.Random.Range(2, 4);
-                if (workstation_index < workstationNames.Count - 1 && luckyNum % 3 == 0)
+                if (luckyNum % 3 == 0)
                 {
-                    proficiency1 = workstationNames[workstation_index + 1];
+                    proficiency1 = workstationNames[(workstation_index + UnityEngine.Random.Range(1, workstationNames.Count)) % workstationNames.Count]; ;
                     proficiencStat1 = UnityEngine.Random.Range(1, 3);
                 }
             }
@@ -274,9 +274,9 @@ public class WorkerShopMasterController : MonoBehaviour
                 int workstation_index = UnityEngine.Random.Range(0, workstationNames.Count);
                 proficiency0 = workstationNames[workstation_index];
                 proficiencStat0 = UnityEngine.Random.Range(1, 4);
-                if (workstation_index < workstationNames.Count - 1 && luckyNum % 3 == 0)
+                if (luckyNum % 3 == 0)
                 {
-                    proficiency1 = workstationNames[workstation_index + 1];
+                    proficiency1 = workstationNames[(workstation_index + UnityEngine.Random.Range(1, workstationNames.Count)) % workstationNames.Count]; ;
                     proficiencStat1 = 1;
                 }
             }
@@ -285,9 +285,9 @@ public class WorkerShopMasterController : MonoBehaviour
                 int workstation_index = UnityEngine.Random.Range(0, workstationNames.Count);
                 proficiency0 = workstationNames[workstation_index];
                 proficiencStat0 = UnityEngine.Random.Range(1, 3);
-                if (workstation_index < workstationNames.Count - 1 && luckyNum % 3 == 0)
+                if (luckyNum % 3 == 0)
                 {
-                    proficiency1 = workstationNames[workstation_index + 1];
+                    proficiency1 = workstationNames[(workstation_index + UnityEngine.Random.Range(1, workstationNames.Count)) % workstationNames.Count]; ;
                     proficiencStat1 = 1;
                 }
             }

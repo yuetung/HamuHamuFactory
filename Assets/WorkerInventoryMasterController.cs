@@ -6,6 +6,8 @@ public class WorkerInventoryMasterController : MonoBehaviour
 {
     public WorkerShopMasterController workerShopMaster;
     public List<WorkerInventoryItemController> inv_workers;
+    public FactoryEntity factoryEntity=null;
+    public static WorkerInventoryMasterController _instance;
     public string mode = "inspect";
 
     public void OnEnable()
@@ -15,7 +17,8 @@ public class WorkerInventoryMasterController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        _instance = this;
+        gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -24,20 +27,20 @@ public class WorkerInventoryMasterController : MonoBehaviour
 
     }
 
-    public void OpenWorkerInventory(string mode = "inspect")
+    public void AssignWorkerInventory(FactoryEntity factoryEntity)
     {
-        if (mode == "inspect")
-        {
-            this.mode = mode;
-            gameObject.SetActive(true);
-            DisplayInventory();
-        }
-        else if (mode == "assign")
-        {
-            this.mode = mode;
-            gameObject.SetActive(true);
-            DisplayInventory();
-        }
+        this.mode = "assign";
+        gameObject.SetActive(true);
+        this.factoryEntity = factoryEntity;
+        DisplayInventory();
+
+    }
+
+    public void InspectWorkerInventory()
+    {
+        this.mode = "inspect";
+        gameObject.SetActive(true);
+        DisplayInventory();
     }
 
     public void DisplayInventory()
@@ -62,7 +65,7 @@ public class WorkerInventoryMasterController : MonoBehaviour
                 int workstationStats_0 = PlayerPrefs.GetInt("workerProficiencyStat0_" + i);
                 int workstationStats_1 = PlayerPrefs.GetInt("workerProficiencyStat1_" + i);
                 inv_workers[i].SetWorker(mode, name, colorStr, spriteNum, new List<string> { workstations_0, workstations_1 },
-                    new List<int> { workstationStats_0, workstationStats_1 });
+                    new List<int> { workstationStats_0, workstationStats_1 },factoryEntity);
             }
         }
     }
