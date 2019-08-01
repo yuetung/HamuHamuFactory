@@ -136,7 +136,7 @@ public class FactoryEntity : MonoBehaviour
         workerAssigned = true;
         workstationBuilder.SaveEntitiesToPlayerPrefs();
     }
-    public void AssignWorkerLoadTime(int stars, string colorStr)
+    public void AssignWorkerLoadTime(int stars, string colorStr, string workerName)
     {
         if (gameObject.transform.Find("worker"))
         {
@@ -146,6 +146,7 @@ public class FactoryEntity : MonoBehaviour
         workstationBuilder = transform.parent.gameObject.GetComponent<WorkstationBuilder>();
         this.stars = stars;
         this.colorStr = colorStr;
+        this.workerName = workerName;
         //print(colorStr);
         UpdateWorkerImageColorAlpha(ToColor(colorStr), 1.0f);
         workerAssigned = true;
