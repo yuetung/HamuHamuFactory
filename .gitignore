@@ -6,9 +6,10 @@
 /[Tt]emp/
 /[Oo]bj/
 /[Bb]uild/
-/[Bb]uilds/
+#/[Bb]uilds/
 /[Ll]ogs/
 /[Mm]emoryCaptures/
+/ProjectSettings/ProjectVersion.txt
 
 # Never ignore Asset meta data
 !/[Aa]ssets/**/*.meta
@@ -55,8 +56,8 @@ ExportedObj/
 sysinfo.txt
 
 # Builds
-*.apk
-*.unitypackage
+#*.apk
+#*.unitypackage
 
 # Crashlytics generated file
 crashlytics-build.properties
