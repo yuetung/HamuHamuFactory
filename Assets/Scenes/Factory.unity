@@ -63032,6 +63032,21 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 3537240164462181905, guid: 2d544c9fc5bafd241af5d6fca3c14f42,
+        type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3537240164462181905, guid: 2d544c9fc5bafd241af5d6fca3c14f42,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 3537240164462181905, guid: 2d544c9fc5bafd241af5d6fca3c14f42,
+        type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3537240164692265593, guid: 2d544c9fc5bafd241af5d6fca3c14f42,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -63071,21 +63086,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Text
       value: Production Line Status
-      objectReference: {fileID: 0}
-    - target: {fileID: 3537240164462181905, guid: 2d544c9fc5bafd241af5d6fca3c14f42,
-        type: 3}
-      propertyPath: m_FontData.m_FontStyle
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3537240164462181905, guid: 2d544c9fc5bafd241af5d6fca3c14f42,
-        type: 3}
-      propertyPath: m_FontData.m_FontSize
-      value: 28
-      objectReference: {fileID: 0}
-    - target: {fileID: 3537240164462181905, guid: 2d544c9fc5bafd241af5d6fca3c14f42,
-        type: 3}
-      propertyPath: m_FontData.m_MinSize
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d544c9fc5bafd241af5d6fca3c14f42, type: 3}

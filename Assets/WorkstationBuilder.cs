@@ -57,8 +57,9 @@ public class WorkstationBuilder : MonoBehaviour
                 if (PlayerPrefs.GetInt("currentProductionEnityAssigned_" + i) == 1)
                 {
                     string colorStr = PlayerPrefs.GetString("currentProductionEnityColor_" + i);
+                    string workerName = PlayerPrefs.GetString("currentProductionEnityWorkerName_" + i);
                     int stars = PlayerPrefs.GetInt("currentProductionEnityStar_" + i);
-                    factoryEntities[i].AssignWorkerLoadTime(stars, colorStr);
+                    factoryEntities[i].AssignWorkerLoadTime(stars, colorStr, workerName);
                 }
                 else
                 {
@@ -260,6 +261,7 @@ public class WorkstationBuilder : MonoBehaviour
                 PlayerPrefs.SetInt("currentProductionEnityAssigned_" + i, 1);
                 PlayerPrefs.SetString("currentProductionEnityColor_" + i, factoryEntities[i].colorStr);
                 PlayerPrefs.SetInt("currentProductionEnityStar_" + i, factoryEntities[i].stars);
+                PlayerPrefs.SetString("currentProductionEnityWorkerName_" + i, factoryEntities[i].workerName);
             }
             else
             {
