@@ -35,6 +35,7 @@ public class TutorialMode : MonoBehaviour
     public GameObject workstationShopMenu;
     public GameObject employmentAgencyMenu;
     public GameObject materialShopMenu;
+    public GameObject worldMap;
 
     // Start is called before the first frame update
     void Start()
@@ -69,6 +70,7 @@ public class TutorialMode : MonoBehaviour
 
     public void NoSelected()
     {
+
         switch(PlayerPrefs.GetInt("tuorialStage"))
         {
             case 0:
@@ -83,6 +85,7 @@ public class TutorialMode : MonoBehaviour
 
     public void OkSelected()
     {
+
         switch (PlayerPrefs.GetInt("tuorialStage"))
         {
             case 0:
@@ -219,6 +222,7 @@ public class TutorialMode : MonoBehaviour
             case 20:
                 tutorialDialogue.SetActive(true);
                 tutorialDialogueText.text = "Almost there! Now you'll need to purchase some MATERIAL for production.";
+                worldMap.SetActive(false);
                 employmentAgencyMenu.SetActive(false);
                 ShowOk();
                 PlayerPrefs.SetInt("tuorialStage", 21);
@@ -321,6 +325,7 @@ public class TutorialMode : MonoBehaviour
                 tutorialDialogue.SetActive(true);
                 tutorialDialogueText.text = "Great, now you need to hire some WORKER to work for you.";
                 workstationShopMenu.SetActive(false);
+                worldMap.SetActive(false);
                 ShowOk();
                 PlayerPrefs.SetInt("tuorialStage", 13);
                 break;
@@ -336,6 +341,7 @@ public class TutorialMode : MonoBehaviour
                 materialShopMenu.SetActive(false);
                 tutorialDialogueText.text = "Great, let's start building some BARRELS!";
                 workstationShopMenu.SetActive(false);
+                worldMap.SetActive(false);
                 ShowOk();
                 PlayerPrefs.SetInt("tuorialStage", 26);
                 break;

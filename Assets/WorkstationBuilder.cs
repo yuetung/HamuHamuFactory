@@ -172,7 +172,7 @@ public class WorkstationBuilder : MonoBehaviour
 
     public void StartAll()
     {
-        InvokeRepeating("Produce", 3f, jobRequestMasterController.GetProductionTime(PlayerPrefs.GetString("currentProductionJob"))/3);
+        InvokeRepeating("Produce", 3f, jobRequestMasterController.GetProductionTime(PlayerPrefs.GetString("currentProductionJob")));
         startedProduction = true;
         PlayerPrefs.SetInt("ProductionRunning", 1);
         OnOffButton.sprite = OffButtonSprite;
@@ -399,13 +399,13 @@ public class WorkstationBuilder : MonoBehaviour
             SetMaterialText();
             GameObject currentProduce = Instantiate(producePrefab, new Vector2(-120f, y_pos + 180), Quaternion.identity, transform);
             currentProduce.GetComponent<ProduceController>().Initiate(produceWorkstationPositions, jobRequestMasterController.GetProductionSprites(PlayerPrefs.GetString("currentProductionJob")),
-                produce_end_x, jobRequestMasterController.GetProductionTime(PlayerPrefs.GetString("currentProductionJob")),
+                produce_end_x, jobRequestMasterController.GetProductionTime(PlayerPrefs.GetString("currentProductionJob"))*3,
                 jobRequestMasterController.GetUnitReward(PlayerPrefs.GetString("currentProductionJob")));
             currentProduces.Add(currentProduce);
         }
         else
         {
-            Invoke("StopAll", jobRequestMasterController.GetProductionTime(PlayerPrefs.GetString("currentProductionJob")));
+            Invoke("StopAll", jobRequestMasterController.GetProductionTime(PlayerPrefs.GetString("currentProductionJob"))*3);
         }
     }
 
