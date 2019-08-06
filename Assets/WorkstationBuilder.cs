@@ -8,9 +8,11 @@ public class WorkstationBuilder : MonoBehaviour
     public List<Workstation> workstations;
     public GameObject conveyor;
     public GameObject box;
+    public GameObject producePrefab;
     public float y_pos = -660f;
     public GameObject startSequence;
     public JobRequestMasterController jobRequestMasterController;
+    public MaterialShopMasterController materialShopMasterController;
     private Dictionary<string, Workstation> workstationNameDict = new Dictionary<string, Workstation>();
     public bool startedProduction = false;
     public Image OnOffButton;
@@ -18,6 +20,12 @@ public class WorkstationBuilder : MonoBehaviour
     public Sprite OffButtonSprite;
     public Text ProductionJobName;
     public Text ProductionJobStatus;
+    public Image[] materialImages;
+    public Text[] materialTexts;
+    private List<float> produceWorkstationPositions = new List<float>();
+    private float produce_end_x = 100f;
+    private Sprite[] produceSprites;
+    private List<GameObject> currentProduces = new List<GameObject>();
 
     public List<FactoryEntity> factoryEntities;
 
@@ -72,6 +80,7 @@ public class WorkstationBuilder : MonoBehaviour
             }
         }
         SetProductionJobStatusText();
+        SetMaterialText();
 
         //Build(new List<string> {"saw","drill","drill"});
     }
@@ -92,15 +101,19 @@ public class WorkstationBuilder : MonoBehaviour
         //GameObject bi = Instantiate(box, transform);
         //bi.GetComponent<RectTransform>().position = new Vector2(current_x_pos, y_pos);
         //current_x_pos += bi.GetComponent<RectTransform>().rect.width;
+        List<float> workstationPositions = new List<float>();
+        workstationPositions.Add(current_x_pos); // workstation start
         string prev_n = names[0];
         foreach (string n in names)
         {
             if (prev_n != n)
             {
+                workstationPositions.Add(current_x_pos); // conveyor start
                 // Create a conveyor
                 GameObject conv = Instantiate(conveyor, transform);
                 conv.GetComponent<RectTransform>().position = new Vector2(current_x_pos, y_pos);
                 current_x_pos += conv.GetComponent<RectTransform>().rect.width;
+                workstationPositions.Add(current_x_pos); // conveyor end
             }
             // Create a workstation
             Workstation w = workstationNameDict[n];
@@ -111,10 +124,12 @@ public class WorkstationBuilder : MonoBehaviour
             current_x_pos += w.effective_width;
             prev_n = n;
         }
+        workstationPositions.Add(current_x_pos); // workstation end
         // Create a conveyor
         GameObject convf = Instantiate(conveyor, transform);
         convf.GetComponent<RectTransform>().position = new Vector2(current_x_pos, y_pos);
         current_x_pos += convf.GetComponent<RectTransform>().rect.width;
+        float end_x = current_x_pos+150; // final conveyor end
         //// Create a box
         //GameObject bo = Instantiate(box, transform);
         //bo.GetComponent<RectTransform>().position = new Vector2(current_x_pos, y_pos);
@@ -124,6 +139,9 @@ public class WorkstationBuilder : MonoBehaviour
             StopAll();
         }
         SetProductionJobStatusText();
+        SetProduceParams(workstationPositions,end_x);
+        SetMaterialText();
+        DeleteAllCurrentProduces();
     }
 
     public float GetRequiredWidth(List<string> names)
@@ -154,6 +172,7 @@ public class WorkstationBuilder : MonoBehaviour
 
     public void StartAll()
     {
+        InvokeRepeating("Produce", 3f, jobRequestMasterController.GetProductionTime(PlayerPrefs.GetString("currentProductionJob"))/3);
         startedProduction = true;
         PlayerPrefs.SetInt("ProductionRunning", 1);
         OnOffButton.sprite = OffButtonSprite;
@@ -178,6 +197,8 @@ public class WorkstationBuilder : MonoBehaviour
 
     public void StopAll()
     {
+        CancelInvoke();
+        DeleteAllCurrentProduces();
         startedProduction = false;
         PlayerPrefs.SetInt("ProductionRunning", 0);
         OnOffButton.sprite = OnButtonSprite;
@@ -201,11 +222,9 @@ public class WorkstationBuilder : MonoBehaviour
 
     public void StartOrStopButtonClicked()
     {
-        //TODO: check if all workers assigned
-        bool allWorkerAssigned = CheckIfAllWorkerAssigned();
         if (!startedProduction)
         {
-            if (allWorkerAssigned)
+            if (CheckIfAllWorkerAssigned() && CheckSufficientMaterial())
             {
                 StartAll();
             }
@@ -251,6 +270,21 @@ public class WorkstationBuilder : MonoBehaviour
         return alreadyAssigned;
     }
 
+    public bool CheckSufficientMaterial()
+    {
+        bool enoughMaterial = true;
+        string[] materialNames = jobRequestMasterController.GetMaterialNames(PlayerPrefs.GetString("currentProductionJob"));
+        int[] materialNums = jobRequestMasterController.GetMaterialNums(PlayerPrefs.GetString("currentProductionJob"));
+        for (int i=0; i<materialNames.Length; i++)
+        {
+            if (!PlayerPrefs.HasKey(materialNames[i]) || PlayerPrefs.GetInt(materialNames[i])< materialNums[i])
+            {
+                enoughMaterial = false;
+            }
+        }
+        return enoughMaterial;
+    }
+
     public void SaveEntitiesToPlayerPrefs()
     {
         PlayerPrefs.SetInt("currentProductionEnitiesNum", factoryEntities.Count);
@@ -280,7 +314,7 @@ public class WorkstationBuilder : MonoBehaviour
             ProductionJobStatus.color = Color.green;
             OnOffButton.gameObject.GetComponent<Button>().interactable = true;
         }
-        else if (CheckIfAllWorkerAssigned())
+        else if (CheckIfAllWorkerAssigned() && CheckSufficientMaterial())
         {
             ProductionJobStatus.text = "||------READY-----||";
             ProductionJobStatus.color = Color.black;
@@ -292,12 +326,48 @@ public class WorkstationBuilder : MonoBehaviour
             ProductionJobStatus.color = Color.black;
             OnOffButton.gameObject.GetComponent<Button>().interactable = false;
         }
-        else
+        else if (!CheckIfAllWorkerAssigned())
         {
             ProductionJobStatus.text = "||---NEED WORKER--||";
             ProductionJobStatus.color = Color.red;
             OnOffButton.gameObject.GetComponent<Button>().interactable=false;
         }
+        else if (!CheckSufficientMaterial())
+        {
+            ProductionJobStatus.text = "||--NEED MATERIAL-||";
+            ProductionJobStatus.color = Color.red;
+            OnOffButton.gameObject.GetComponent<Button>().interactable = false;
+        }
+    }
+
+    public void SetMaterialText()
+    {
+        if (PlayerPrefs.HasKey("currentProductionJob"))
+        {
+            string[] materialNames = jobRequestMasterController.GetMaterialNames(PlayerPrefs.GetString("currentProductionJob"));
+            //int[] materialNums = jobRequestMasterController.GetMaterialNums(PlayerPrefs.GetString("currentProductionJob"));
+            for (int i = 0; i < materialImages.Length; i++)
+            {
+                materialImages[i].gameObject.SetActive(false);
+                materialTexts[i].gameObject.SetActive(false);
+            }
+            for (int i = 0; i < materialNames.Length; i++)
+            {
+                materialImages[i].gameObject.SetActive(true);
+                materialTexts[i].gameObject.SetActive(true);
+                materialImages[i].overrideSprite = materialShopMasterController.GetMaterialSprite(materialNames[i]);
+                if (!PlayerPrefs.HasKey(materialNames[i]))
+                {
+                    materialTexts[i].text = "x0";
+                }
+                else
+                {
+                    materialTexts[i].text = "x" + PlayerPrefs.GetInt(materialNames[i]).ToString();
+                }
+            }
+        }
+        
+        
     }
 
     public int GetTotalStar()
@@ -308,5 +378,57 @@ public class WorkstationBuilder : MonoBehaviour
             total += f.stars;
         }
         return total;
+    }
+
+    public void SetProduceParams(List<float> workstationPositions, float end_x)
+    {
+        produceWorkstationPositions = workstationPositions;
+        produce_end_x = end_x;
+    }
+
+    public void Produce()
+    {
+        if (CheckSufficientMaterial())
+        {
+            string[] materialNames = jobRequestMasterController.GetMaterialNames(PlayerPrefs.GetString("currentProductionJob"));
+            int[] materialNums = jobRequestMasterController.GetMaterialNums(PlayerPrefs.GetString("currentProductionJob"));
+            for (int i = 0; i < materialNames.Length; i++)
+            {
+                GameManager.instance.LossMaterial(materialNames[i], materialNums[i]);
+            }
+            SetMaterialText();
+            GameObject currentProduce = Instantiate(producePrefab, new Vector2(-120f, y_pos + 180), Quaternion.identity, transform);
+            currentProduce.GetComponent<ProduceController>().Initiate(produceWorkstationPositions, jobRequestMasterController.GetProductionSprites(PlayerPrefs.GetString("currentProductionJob")),
+                produce_end_x, jobRequestMasterController.GetProductionTime(PlayerPrefs.GetString("currentProductionJob")),
+                jobRequestMasterController.GetUnitReward(PlayerPrefs.GetString("currentProductionJob")));
+            currentProduces.Add(currentProduce);
+        }
+        else
+        {
+            Invoke("StopAll", jobRequestMasterController.GetProductionTime(PlayerPrefs.GetString("currentProductionJob")));
+        }
+    }
+
+    public void DeleteAllCurrentProduces()
+    {
+        foreach (GameObject p in currentProduces)
+        {
+            // gain back material if object still around
+            if (p!=null)
+            {
+                string[] materialNames = jobRequestMasterController.GetMaterialNames(PlayerPrefs.GetString("currentProductionJob"));
+                int[] materialNums = jobRequestMasterController.GetMaterialNums(PlayerPrefs.GetString("currentProductionJob"));
+                for (int i = 0; i < materialNames.Length; i++)
+                {
+                    GameManager.instance.GainMaterial(materialNames[i], materialNums[i]);
+                }
+            }
+            Destroy(p);
+        }
+        currentProduces = new List<GameObject>();
+    }
+    public void OnApplicationQuit()
+    {
+        DeleteAllCurrentProduces();
     }
 }

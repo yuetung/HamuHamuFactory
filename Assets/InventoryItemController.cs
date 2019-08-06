@@ -29,7 +29,7 @@ public class InventoryItemController : MonoBehaviour
         _image = gameObject.transform.Find("Image").GetComponent<Image>();
         _amount = gameObject.transform.Find("Amount").GetComponent<Text>();
         _name_background = gameObject.transform.Find("NameBackground").gameObject;
-        Debug.Log(_name_background.ToString());
+        //Debug.Log(_name_background.ToString());
         m_display_name = display_name;
         m_variable_name = variable_name;
         m_sprite = sprite;

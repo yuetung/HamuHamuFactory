@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1358315195540904896}
   - component: {fileID: 1873898645775220003}
   m_Layer: 5
-  m_Name: station_saw
+  m_Name: station_hammer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -95,7 +95,7 @@ MonoBehaviour:
   childAnimators:
   - {fileID: 8790684516242444599}
   - {fileID: 1127129937173180082}
-  - {fileID: 6123670001709641012}
+  - {fileID: 1468151433450239897}
   workstationBuilder: {fileID: 0}
   triggerAction: 0
   workerAssigned: 0
@@ -170,7 +170,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 034ca63e8f362604aa2bbbf5384b2540, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6b33c47fbce8c9d49bba9da61d3f149b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -277,7 +277,7 @@ GameObject:
   - component: {fileID: 6713232357664680130}
   - component: {fileID: 8184116511300034878}
   - component: {fileID: 2044109022337486306}
-  - component: {fileID: 6123670001709641012}
+  - component: {fileID: 1468151433450239897}
   m_Layer: 5
   m_Name: worker
   m_TagString: Untagged
@@ -332,7 +332,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 3246208f3c795c943a177f1b099d0af0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 90167d56694a0f8449c1f974cced2973, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -341,7 +341,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
---- !u!95 &6123670001709641012
+--- !u!95 &1468151433450239897
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -351,7 +351,7 @@ Animator:
   m_GameObject: {fileID: 7482860129133243754}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 14a2df0d86be8c94f81059564ce5d715, type: 2}
+  m_Controller: {fileID: 9100000, guid: e93f1ae5801be414a869e61f470a89d4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

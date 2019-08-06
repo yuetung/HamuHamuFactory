@@ -91,5 +91,11 @@ public class MaterialShopMasterController : MonoBehaviour
         //}
     }
 
-    
+    public Sprite GetMaterialSprite(string var_name)
+    {
+        ShopItemEntry mat = var_name_to_item_entry[var_name];
+        return mat.sprite;
+    }
+
+
 }

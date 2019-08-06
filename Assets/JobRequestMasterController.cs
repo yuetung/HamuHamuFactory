@@ -13,6 +13,7 @@ public class JobRequestMasterController : MonoBehaviour
         public string variable_name;
         public int unit_reward;
         public Sprite sprite;
+        public Sprite[] productionSprites;
         public int production_time;
         public string[] workstation_names;
         public int[] workstation_nums;
@@ -45,9 +46,7 @@ public class JobRequestMasterController : MonoBehaviour
         ShowAvailableJobItems();
         started = true;
         gameObject.SetActive(false);
-        GameManager.instance.GainProductionJob("wooden_table", "Wooden Table");
-        GameManager.instance.GainProductionJob("wooden_table_L", "Big Wooden Table");
-        
+
     }
 
     // Update is called once per frame
@@ -112,5 +111,35 @@ public class JobRequestMasterController : MonoBehaviour
     {
         JobItemEntry job = var_name_to_item_entry[var_name];
         return job.display_name;
+    }
+
+    public int GetUnitReward(string var_name)
+    {
+        JobItemEntry job = var_name_to_item_entry[var_name];
+        return job.unit_reward;
+    }
+
+    public Sprite[] GetProductionSprites(string var_name)
+    {
+        JobItemEntry job = var_name_to_item_entry[var_name];
+        return job.productionSprites;
+    }
+
+    public float GetProductionTime(string var_name)
+    {
+        JobItemEntry job = var_name_to_item_entry[var_name];
+        return job.production_time;
+    }
+
+    public string[] GetMaterialNames(string var_name)
+    {
+        JobItemEntry job = var_name_to_item_entry[var_name];
+        return job.material_names;
+    }
+
+    public int[] GetMaterialNums(string var_name)
+    {
+        JobItemEntry job = var_name_to_item_entry[var_name];
+        return job.material_nums;
     }
 }

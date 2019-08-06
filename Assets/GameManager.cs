@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public int moneyOnHand;
-    public int starting_moneyOnHand = 3000;
+    public int starting_moneyOnHand = 0;
     public int starting_exp = 0;
     public Text moneyOnHandText;
     public Text moneyOnHandChangesText;
@@ -20,6 +20,11 @@ public class GameManager : MonoBehaviour
     public Text ExpText;
     public BarAnimator expBarController;
     public RoomSizeManager roomSizeManager;
+    public WorkerShopMasterController workerShopMasterController;
+    public MaterialShopConfirmationWindowController materialShopConfirmationWindowController;
+    public WorkstationConstructionMasterController workstationShopMasterController;
+    public WorkstationBuilder workstationBuilder;
+    public InventoryMasterController inventoryMasterController;
     private Coroutine disablemoneyOnHandChangesTextCoroutine = null;
     private Coroutine changeMoneyToCoroutine = null;
     public bool resetPlayerPrefs = false;
@@ -130,7 +135,6 @@ public class GameManager : MonoBehaviour
     public void GainExp(int amount)
     {
         // Gain level if exp > exp required to level up
-        
         if (currentExp + amount >= expRequired[currentLevel - 1])
         {
             int newExp = currentExp + amount;
@@ -147,6 +151,7 @@ public class GameManager : MonoBehaviour
             currentExp = currentExp + amount;
         }
         UpdateExpText();
+        ResetUI();
     }
 
     private void UpdateMoneyText()
@@ -163,6 +168,24 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("currentLevel", currentLevel);
     }
 
+    private void ResetUI()
+    {
+        if (workerShopMasterController)
+            workerShopMasterController.GenerateTodayWorkers();
+        if (materialShopConfirmationWindowController)
+            materialShopConfirmationWindowController.ResetColour();
+        if (workstationShopMasterController)
+            workstationShopMasterController.ResetAllWorkstationItemControllerAfterPurchase();
+        if (workstationBuilder)
+        {
+            workstationBuilder.SetProductionJobStatusText();
+            workstationBuilder.SetMaterialText();
+        }
+            
+        if (inventoryMasterController)
+            inventoryMasterController.DisplayInventory();
+    }
+
     private IEnumerator DisablemoneyOnHandChangesText(float duration)
     {
         yield return new WaitForSeconds(duration);
@@ -174,6 +197,7 @@ public class GameManager : MonoBehaviour
         int start = moneyOnHand;
         moneyOnHand = target;
         PlayerPrefs.SetInt("moneyOnHand", moneyOnHand);
+        ResetUI();
         for (float timer = 0; timer < duration; timer += Time.deltaTime)
         {
             float progress = timer / duration;
@@ -200,7 +224,7 @@ public class GameManager : MonoBehaviour
     public void LevelUp()
     {
         // play level up animation here
-        if (currentLevel%1==0)
+        if (currentLevel%3==0)
             roomSizeManager.AddRoom();  // add room every 1 levels?
         Debug.Log("level up!");
     }
@@ -217,12 +241,13 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt(name, amount);
         }
         Debug.Log("Gain " + amount.ToString() + " " + name + " workstation (Total=" + PlayerPrefs.GetInt(name)+")");
-        if (show_message)
+        if (show_message && messageBoard && messageBoardText)
         {
             int inventory = PlayerPrefs.GetInt(name);
             string message = "You gained " + amount + " " + displayed_name + "!\n total: " + inventory;
             // show a message here
         }
+        ResetUI();
     }
 
     public void GainMaterial(string name, int amount, string displayed_name = "", bool show_message = false)
@@ -237,13 +262,14 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt(name, amount);
         }
         Debug.Log("Gain " + amount.ToString() + " " + name + " material (Total=" + PlayerPrefs.GetInt(name) + ")");
-        if (show_message)
+        if (show_message && messageBoard && messageBoardText)
         {
             int inventory = PlayerPrefs.GetInt(name);
             string message = "You gained " + amount + " " + displayed_name + "!\n total: " + inventory;
             messageBoard.SetActive(true);
             messageBoardText.text = message;
         }
+        ResetUI();
     }
 
     public void LossMaterial(string name, int amount, string displayed_name = "", bool show_message = false)
@@ -262,6 +288,7 @@ public class GameManager : MonoBehaviour
         {
             PlayerPrefs.SetInt(name, new_inventory);
         }
+        ResetUI();
     }
 
     public void GainProductionJob(string name, string displayed_name, bool show_message = false)
@@ -269,7 +296,7 @@ public class GameManager : MonoBehaviour
         if (PlayerPrefs.HasKey(name))
         {
             Debug.Log("Production job already available");
-            if (show_message)
+            if (show_message && messageBoard && messageBoardText)
             {
                 string message = "Production job " + displayed_name + " already available";
                 messageBoard.SetActive(true);
@@ -280,7 +307,7 @@ public class GameManager : MonoBehaviour
         {
             PlayerPrefs.SetInt(name,1);
             Debug.Log("Obtained a new production job: " + displayed_name + " !!!");
-            if (show_message)
+            if (show_message && messageBoard && messageBoardText)
             {
                 string message = "Obtained a production job: " + displayed_name + " !!!";
                 messageBoard.SetActive(true);
@@ -305,7 +332,7 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("workerProficiencyStat1_" + numWorkers, workstationStats[1]);
         PlayerPrefs.SetInt("TotalNumWorkers", numWorkers + 1);
         Debug.Log("Hired " + name.ToString() + " !");
-        if (show_message)
+        if (show_message && messageBoard && messageBoardText)
         {
             string message = "Hired " + name.ToString() + " !";
             messageBoard.SetActive(true);

@@ -135,6 +135,7 @@ public class FactoryEntity : MonoBehaviour
         UpdateWorkerImageColorAlpha(ToColor(colorStr), 1.0f);
         workerAssigned = true;
         workstationBuilder.SaveEntitiesToPlayerPrefs();
+        GameManager.instance.gameObject.GetComponent<TutorialMode>().WorkerAssigned();
     }
     public void AssignWorkerLoadTime(int stars, string colorStr, string workerName)
     {
