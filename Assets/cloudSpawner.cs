@@ -13,6 +13,8 @@ public class cloudSpawner : MonoBehaviour
 
     public float scroll_speed_max;
     
+    public float screen_cover_ratio;
+    
     private float backgroundWidth;
     private float backgroundPosStarting;
 
@@ -45,7 +47,7 @@ public class cloudSpawner : MonoBehaviour
         {
             yield return new WaitForSeconds(waitTime);
             // Starting at the beginning of the background image, with could covering certain % from the top
-            starting_position = new Vector3(transform.position.x, Random.Range((backgroundCelling-(backgroundCelling-backgroundFloor)*0.3f),backgroundCelling));
+            starting_position = new Vector3(transform.position.x, Random.Range((backgroundCelling-(backgroundCelling-backgroundFloor)*screen_cover_ratio),backgroundCelling));
             GameObject tempClone = Instantiate(randomClouds[Random.Range(0,2)],starting_position,this.transform.rotation,this.gameObject.transform);
             tempClone.GetComponent<CloudScroll>().scroll_speed = Random.Range(scroll_speed_min, scroll_speed_max);
             tempClone.GetComponent<CloudScroll>().background_width = backgroundWidth;
