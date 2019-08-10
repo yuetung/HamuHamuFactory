@@ -14,6 +14,7 @@ public class ProduceController : MonoBehaviour
     public bool move = false;
     private Animator _animator;
     private int pointer = 0;
+    private WorkstationBuilder workstationBuilder;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +29,7 @@ public class ProduceController : MonoBehaviour
         {
             transform.Translate(Vector3.right * Time.deltaTime * (endPos_x-startPos_x)/productionTime);
         }
-        if (transform.position.x >= endPos_x)
+        if (transform.position.x >= endPos_x && move==true)
         {
             StopMoving();
         }
@@ -47,8 +48,9 @@ public class ProduceController : MonoBehaviour
         }
     }
 
-    public void Initiate(List<float> workstationPositions, Sprite[] produceSprites, float endPos_x, float productionTime, int goldGained)
+    public void Initiate(WorkstationBuilder workstationBuilder, List<float> workstationPositions, Sprite[] produceSprites, float endPos_x, float productionTime, int goldGained)
     {
+        this.workstationBuilder = workstationBuilder;
         startPos_x = transform.position.x;
         this.endPos_x = endPos_x;
         this.workstationPositions = workstationPositions;
@@ -67,6 +69,7 @@ public class ProduceController : MonoBehaviour
     public void StopMoving()
     {
         move = false;
+        workstationBuilder.Teleport();
         _animator.SetTrigger("disappear");
     }
 
@@ -74,7 +77,6 @@ public class ProduceController : MonoBehaviour
     {
         GameManager.instance.GainMoney(goldGained);
         GameManager.instance.GainExp(goldGained/2);
-        // TODO: do some fancy teleport thingy here
         Destroy(gameObject);
     }
 }

@@ -7,7 +7,7 @@ public class WorkstationBuilder : MonoBehaviour
 {
     public List<Workstation> workstations;
     public GameObject conveyor;
-    public GameObject box;
+    public GameObject teleporter;
     public GameObject producePrefab;
     public float y_pos = -660f;
     public GameObject startSequence;
@@ -26,6 +26,7 @@ public class WorkstationBuilder : MonoBehaviour
     private float produce_end_x = 100f;
     private Sprite[] produceSprites;
     private List<GameObject> currentProduces = new List<GameObject>();
+    private TeleporterController teleporterController;
 
     public List<FactoryEntity> factoryEntities;
 
@@ -97,10 +98,6 @@ public class WorkstationBuilder : MonoBehaviour
         factoryEntities = new List<FactoryEntity>();
         ProductionJobName.text = display_name;
         float current_x_pos = startin_pos;
-        //// Create a box
-        //GameObject bi = Instantiate(box, transform);
-        //bi.GetComponent<RectTransform>().position = new Vector2(current_x_pos, y_pos);
-        //current_x_pos += bi.GetComponent<RectTransform>().rect.width;
         List<float> workstationPositions = new List<float>();
         workstationPositions.Add(current_x_pos); // workstation start
         string prev_n = names[0];
@@ -129,11 +126,12 @@ public class WorkstationBuilder : MonoBehaviour
         GameObject convf = Instantiate(conveyor, transform);
         convf.GetComponent<RectTransform>().position = new Vector2(current_x_pos, y_pos);
         current_x_pos += convf.GetComponent<RectTransform>().rect.width;
-        float end_x = current_x_pos+150; // final conveyor end
-        //// Create a box
-        //GameObject bo = Instantiate(box, transform);
-        //bo.GetComponent<RectTransform>().position = new Vector2(current_x_pos, y_pos);
-        //current_x_pos += bo.GetComponent<RectTransform>().rect.width;
+        float end_x = current_x_pos+130; // final conveyor end
+        // Create a teleporter
+        GameObject tele = Instantiate(teleporter, transform);
+        tele.GetComponent<RectTransform>().position = new Vector2(current_x_pos, y_pos);
+        current_x_pos += tele.GetComponent<RectTransform>().rect.width;
+        teleporterController = tele.GetComponent<TeleporterController>();
         if (PlayerPrefs.GetInt("ProductionRunning") == 0)
         {
             StopAll();
@@ -148,7 +146,7 @@ public class WorkstationBuilder : MonoBehaviour
     {
         float req_width = 0;
         string prev_n = names[0];
-        //req_width += 2*box.GetComponent<RectTransform>().rect.width;
+        req_width += teleporter.GetComponent<RectTransform>().rect.width;
         foreach (string n in names)
         {
             if (prev_n != n)
@@ -398,7 +396,7 @@ public class WorkstationBuilder : MonoBehaviour
             }
             SetMaterialText();
             GameObject currentProduce = Instantiate(producePrefab, new Vector2(-120f, y_pos + 180), Quaternion.identity, transform);
-            currentProduce.GetComponent<ProduceController>().Initiate(produceWorkstationPositions, jobRequestMasterController.GetProductionSprites(PlayerPrefs.GetString("currentProductionJob")),
+            currentProduce.GetComponent<ProduceController>().Initiate(this, produceWorkstationPositions, jobRequestMasterController.GetProductionSprites(PlayerPrefs.GetString("currentProductionJob")),
                 produce_end_x, jobRequestMasterController.GetProductionTime(PlayerPrefs.GetString("currentProductionJob"))*3,
                 jobRequestMasterController.GetUnitReward(PlayerPrefs.GetString("currentProductionJob")));
             currentProduces.Add(currentProduce);
@@ -426,6 +424,11 @@ public class WorkstationBuilder : MonoBehaviour
             Destroy(p);
         }
         currentProduces = new List<GameObject>();
+    }
+
+    public void Teleport()
+    {
+        teleporterController.Teleport();
     }
     public void OnApplicationQuit()
     {
