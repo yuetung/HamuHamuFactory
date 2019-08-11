@@ -15,6 +15,8 @@ public class ProduceController : MonoBehaviour
     private Animator _animator;
     private int pointer = 0;
     private WorkstationBuilder workstationBuilder;
+    private string production_name;
+    private int averageStars;
 
     // Start is called before the first frame update
     void Start()
@@ -48,8 +50,9 @@ public class ProduceController : MonoBehaviour
         }
     }
 
-    public void Initiate(WorkstationBuilder workstationBuilder, List<float> workstationPositions, Sprite[] produceSprites, float endPos_x, float productionTime, int goldGained)
+    public void Initiate(string name, WorkstationBuilder workstationBuilder, List<float> workstationPositions, Sprite[] produceSprites, float endPos_x, float productionTime, int goldGained, int averageStars)
     {
+        this.production_name = name;
         this.workstationBuilder = workstationBuilder;
         startPos_x = transform.position.x;
         this.endPos_x = endPos_x;
@@ -59,6 +62,7 @@ public class ProduceController : MonoBehaviour
         this.goldGained = goldGained;
         _animator = gameObject.GetComponent<Animator>();
         gameObject.GetComponent<Image>().overrideSprite = produceSprites[0];
+        this.averageStars = averageStars;
     }
 
     public void StartMoving()
@@ -75,8 +79,10 @@ public class ProduceController : MonoBehaviour
 
     public void Done()
     {
-        GameManager.instance.GainMoney(goldGained);
-        GameManager.instance.GainExp(goldGained/2);
+        GameManager.instance.GainMoney(goldGained * (100+(averageStars-2)*10)/100);
+        GameManager.instance.Produce(production_name);
+        GameManager.instance.Produce(averageStars.ToString() + "stars_item");
+        //GameManager.instance.GainExp(goldGained/2);
         Destroy(gameObject);
     }
 }

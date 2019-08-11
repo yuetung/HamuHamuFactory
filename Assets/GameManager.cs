@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     public InventoryMasterController inventoryMasterController;
     private Coroutine disablemoneyOnHandChangesTextCoroutine = null;
     private Coroutine changeMoneyToCoroutine = null;
+    private DailyMission dailyMission;
     public bool resetPlayerPrefs = false;
     public GameObject messageBoard;
     public Text messageBoardText;
@@ -77,6 +78,7 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("currentExp", currentExp);
             PlayerPrefs.SetInt("currentLevel", currentLevel);
         }
+        dailyMission = gameObject.GetComponent<DailyMission>();
         UpdateMoneyText();
         UpdateExpText();
     }
@@ -226,6 +228,11 @@ public class GameManager : MonoBehaviour
         // play level up animation here
         if (currentLevel%3==0)
             roomSizeManager.AddRoom();  // add room every 1 levels?
+        dailyMission.UpdateAvailableMissions();
+        if (currentLevel == 2)
+        {
+            gameObject.GetComponent<TutorialMode>().ShowDialogueLevel2();
+        }
         Debug.Log("level up!");
     }
 
@@ -338,5 +345,10 @@ public class GameManager : MonoBehaviour
             messageBoard.SetActive(true);
             messageBoardText.text = message;
         }
+    }
+
+    public void Produce(string name)
+    {
+        dailyMission.Produce(name);
     }
 }

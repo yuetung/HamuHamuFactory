@@ -22,6 +22,8 @@ public class WorkstationBuilder : MonoBehaviour
     public Text ProductionJobStatus;
     public Image[] materialImages;
     public Text[] materialTexts;
+    public GameObject[] ProductionStars;
+    public Text ProductionStarBonusText;
     private List<float> produceWorkstationPositions = new List<float>();
     private float produce_end_x = 100f;
     private Sprite[] produceSprites;
@@ -81,6 +83,7 @@ public class WorkstationBuilder : MonoBehaviour
             }
         }
         SetProductionJobStatusText();
+        UpdateStars();
         SetMaterialText();
 
         //Build(new List<string> {"saw","drill","drill"});
@@ -137,6 +140,7 @@ public class WorkstationBuilder : MonoBehaviour
             StopAll();
         }
         SetProductionJobStatusText();
+        UpdateStars();
         SetProduceParams(workstationPositions,end_x);
         SetMaterialText();
         DeleteAllCurrentProduces();
@@ -190,6 +194,7 @@ public class WorkstationBuilder : MonoBehaviour
             };
         }
         print("Total star = "+ GetTotalStar().ToString());
+        UpdateStars();
         SetProductionJobStatusText();
     }
 
@@ -302,6 +307,7 @@ public class WorkstationBuilder : MonoBehaviour
             //print(PlayerPrefs.GetInt("currentProductionEnityAssigned_" + i));
         }
         SetProductionJobStatusText();
+        UpdateStars();
     }
 
     public void SetProductionJobStatusText()
@@ -378,6 +384,42 @@ public class WorkstationBuilder : MonoBehaviour
         return total;
     }
 
+    public void UpdateStars()
+    {
+        int totalStars = GetTotalStar();
+        int totalStations = factoryEntities.Count;
+        int averageStars = 0;
+        if (totalStations == 0 || totalStars * 2 / totalStations<1)
+        {
+            for (int i = 0; i < ProductionStars.Length; i++)
+            {
+                ProductionStars[i].SetActive(false);
+            }
+        }
+        else
+        {
+            averageStars = totalStars * 2 / totalStations;
+            for (int i = 0; i < ProductionStars.Length; i++)
+            {
+                ProductionStars[i].SetActive(false);
+            }
+            for (int i = 0; i < averageStars; i++)
+            {
+                ProductionStars[i].SetActive(true);
+            }
+        }
+        if (((averageStars - 2) * 10) <= 0)
+        {
+            ProductionStarBonusText.text = "+0%";
+            ProductionStarBonusText.color = Color.black;
+        }
+        else
+        {
+            ProductionStarBonusText.text = "+" + ((averageStars - 2) * 10) + "%";
+            ProductionStarBonusText.color = Color.green;
+        }
+    }
+
     public void SetProduceParams(List<float> workstationPositions, float end_x)
     {
         produceWorkstationPositions = workstationPositions;
@@ -396,9 +438,9 @@ public class WorkstationBuilder : MonoBehaviour
             }
             SetMaterialText();
             GameObject currentProduce = Instantiate(producePrefab, new Vector2(-120f, y_pos + 180), Quaternion.identity, transform);
-            currentProduce.GetComponent<ProduceController>().Initiate(this, produceWorkstationPositions, jobRequestMasterController.GetProductionSprites(PlayerPrefs.GetString("currentProductionJob")),
+            currentProduce.GetComponent<ProduceController>().Initiate(PlayerPrefs.GetString("currentProductionJob"),this, produceWorkstationPositions, jobRequestMasterController.GetProductionSprites(PlayerPrefs.GetString("currentProductionJob")),
                 produce_end_x, jobRequestMasterController.GetProductionTime(PlayerPrefs.GetString("currentProductionJob"))*3,
-                jobRequestMasterController.GetUnitReward(PlayerPrefs.GetString("currentProductionJob")));
+                jobRequestMasterController.GetUnitReward(PlayerPrefs.GetString("currentProductionJob")),GetTotalStar()* 2 / factoryEntities.Count);
             currentProduces.Add(currentProduce);
         }
         else

@@ -37,6 +37,12 @@ public class TutorialMode : MonoBehaviour
     public GameObject materialShopMenu;
     public GameObject worldMap;
 
+    public GameObject level2Dialogue;
+    public Text level2DialogueText;
+    public Button level2YesButton;
+    public Button level2NoButton;
+    public Button level2OkButton;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -449,5 +455,36 @@ public class TutorialMode : MonoBehaviour
     {
         if (!PlayerPrefs.HasKey("tuorialStage") || PlayerPrefs.GetInt("tuorialStage")!=100)
             PlayerPrefs.DeleteAll();
+    }
+
+
+
+    public void ShowDialogueLevel2()
+    {
+        level2Dialogue.SetActive(true);
+        level2DialogueText.text = "Hello dear, I heard rumors that the factory is up and running again. Are you the one running the factory ?";
+        level2YesButton.gameObject.SetActive(true);
+        level2NoButton.gameObject.SetActive(true);
+        level2OkButton.gameObject.SetActive(false);
+    }
+
+    public void Level2YesButtonClicked()
+    {
+        level2DialogueText.text = "Oh dear~ That's great! You see, I'm running out of WOODEN TABLES to display my materials, would you produce some for me?";
+        level2YesButton.gameObject.SetActive(false);
+        level2NoButton.gameObject.SetActive(false);
+        level2OkButton.gameObject.SetActive(true);
+    }
+    public void Level2NoButtonClicked()
+    {
+        level2DialogueText.text = "Oh... Then please inform your manager I would like him to produce some WOODEN TABLES for me. Thank you sweetheart~";
+        level2YesButton.gameObject.SetActive(false);
+        level2NoButton.gameObject.SetActive(false);
+        level2OkButton.gameObject.SetActive(true);
+    }
+    public void Level2OkButtonClicked()
+    {
+        level2Dialogue.SetActive(false);
+        GameManager.instance.GainProductionJob("wooden_table", "Wooden Table", true);
     }
 }
