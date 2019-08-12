@@ -1,21 +1,21 @@
 fileFormatVersion: 2
-guid: 743648217c8b5dd4badf81cb1b0ffb7b
+guid: 389e9b1ff38d0b346bc61dcadbe2a702
 TextureImporter:
   fileIDToRecycleName:
-    21300000: bird_0
-    21300002: bird_1
-    21300004: bird_2
-    21300006: bird_3
-    21300008: bird_4
-    21300010: bird_5
-    21300012: bird_6
-    21300014: bird_7
-    21300016: bird_8
-    21300018: bird_9
-    21300020: bird_10
-    21300022: bird_11
-    21300024: bird_12
-    21300026: bird_13
+    21300000: People_0
+    21300002: People_1
+    21300004: People_2
+    21300006: People_3
+    21300008: People_4
+    21300010: People_5
+    21300012: People_6
+    21300014: People_7
+    21300016: People_8
+    21300018: People_9
+    21300020: People_10
+    21300022: People_11
+    21300024: People_12
+    21300026: People_13
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -98,13 +98,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bird_0
+      name: People_0
       rect:
         serializedVersion: 2
-        x: 34
-        y: 362
-        width: 146
-        height: 143
+        x: 22
+        y: 300
+        width: 55
+        height: 150
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -112,19 +112,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bf83b1fa18fac2048b19b7bd0a91b90a
+      spriteID: 5b7f2e919e7b52b47b454fbae89f89d5
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bird_1
+      name: People_1
       rect:
         serializedVersion: 2
-        x: 216
-        y: 363
-        width: 146
-        height: 141
+        x: 122
+        y: 300
+        width: 61
+        height: 150
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,19 +132,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bcce0c1ac319fc542ac2cbeae1873be7
+      spriteID: d62829478e4b899438dfaebc81bdccc2
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bird_2
+      name: People_2
       rect:
         serializedVersion: 2
-        x: 398
-        y: 364
-        width: 146
-        height: 130
+        x: 209
+        y: 300
+        width: 103
+        height: 148
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,19 +152,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 92e74d552b4f8e94083347c6ed489300
+      spriteID: cbdfc3f09d5cbfd4b838fe5113f06995
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bird_3
+      name: People_3
       rect:
         serializedVersion: 2
-        x: 555
-        y: 367
-        width: 171
-        height: 122
+        x: 340
+        y: 300
+        width: 55
+        height: 150
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -172,19 +172,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7ada0a9fa5ae44a449dce3f8febfd94f
+      spriteID: f9ab7469276f46f4193f6545a829ec5a
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bird_4
+      name: People_4
       rect:
         serializedVersion: 2
-        x: 728
-        y: 370
-        width: 182
-        height: 88
+        x: 433
+        y: 300
+        width: 62
+        height: 150
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,19 +192,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d3ae9447379b0394887cf9ede7ef05d4
+      spriteID: 885596d9ba87dfb4281508d019cd5b0b
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bird_5
+      name: People_5
       rect:
         serializedVersion: 2
-        x: 34
-        y: 171
-        width: 146
-        height: 118
+        x: 520
+        y: 300
+        width: 103
+        height: 150
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -212,19 +212,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8db6b87f3251ba54891583243765a93d
+      spriteID: fe6051bff289a4047bc433e4c861a617
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bird_6
+      name: People_6
       rect:
         serializedVersion: 2
-        x: 216
-        y: 166
-        width: 146
-        height: 124
+        x: 32
+        y: 149
+        width: 55
+        height: 150
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -232,19 +232,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac3a148a212a663489799cbb060d4bcf
+      spriteID: 26d619613ea3ef34793602c978918164
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bird_7
+      name: People_7
       rect:
         serializedVersion: 2
-        x: 398
-        y: 170
-        width: 146
-        height: 120
+        x: 122
+        y: 149
+        width: 62
+        height: 150
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -252,19 +252,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f19a726c79e167a43a93babac8a04083
+      spriteID: 923af3b29cf6e8d48966d381807e4495
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bird_8
+      name: People_8
       rect:
         serializedVersion: 2
-        x: 580
-        y: 180
-        width: 146
-        height: 109
+        x: 209
+        y: 149
+        width: 103
+        height: 148
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -272,19 +272,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a0c171926cd6f3148a8bd5e1723ee422
+      spriteID: 20cb4139334f4f343b040538d28d498e
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bird_9
+      name: People_9
       rect:
         serializedVersion: 2
-        x: 762
-        y: 177
-        width: 146
-        height: 110
+        x: 342
+        y: 149
+        width: 55
+        height: 150
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -292,19 +292,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9a466260154bf3946985cd2d066287dd
+      spriteID: ecfa86040b0c26d4fbdf6cf80426daf5
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bird_10
+      name: People_10
       rect:
         serializedVersion: 2
-        x: 34
-        y: 6
-        width: 146
-        height: 108
+        x: 435
+        y: 149
+        width: 63
+        height: 150
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -312,19 +312,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f618bc1af6819fe4f85f32d383729b2e
+      spriteID: 1cfd741872071ee4eb5bfba3bb87322b
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bird_11
+      name: People_11
       rect:
         serializedVersion: 2
-        x: 216
-        y: 6
-        width: 146
-        height: 106
+        x: 523
+        y: 149
+        width: 101
+        height: 147
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -332,19 +332,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0bd8e6331b50dc646ae9977fbdaeebb1
+      spriteID: ee144d719d511944fa0127edda13b208
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bird_12
+      name: People_12
       rect:
         serializedVersion: 2
-        x: 376
-        y: 23
-        width: 168
-        height: 88
+        x: 32
+        y: 0
+        width: 62
+        height: 146
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -352,19 +352,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7279d297fb54e544fbc1862fd46529bd
+      spriteID: 3d4bd85cb9b9b6e4c8ccd64ae7e654aa
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bird_13
+      name: People_13
       rect:
         serializedVersion: 2
-        x: 546
-        y: 22
-        width: 180
-        height: 114
+        x: 130
+        y: 0
+        width: 62
+        height: 146
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -372,7 +372,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ddea55e73b7821b49b2661c08755f645
+      spriteID: 974d7d9b5e17100449afeb18ab0dade2
       vertices: []
       indices: 
       edges: []
@@ -380,7 +380,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 4b2ea4fe57d953d46b26ed6a71b0a429
+    spriteID: 0710410818ed6294bb2f237358821b43
     vertices: []
     indices: 
     edges: []
