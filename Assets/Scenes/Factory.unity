@@ -45303,7 +45303,7 @@ MonoBehaviour:
   moneyOnHandText: {fileID: 1264888697811269739}
   moneyOnHandChangesText: {fileID: 704814595424131126}
   moneyChangeDuration: 1
-  expRequired: c800000090010000bc020000e8030000d0070000b80b000088130000401f0000e02e0000204e000050c30000
+  expRequired: 640000002c010000bc020000e8030000d0070000b80b000088130000401f0000e02e0000204e000050c30000
   currentExp: 0
   currentLevel: 0
   levelText: {fileID: 27860459583867527}
@@ -45315,7 +45315,7 @@ MonoBehaviour:
   workstationShopMasterController: {fileID: 472879506}
   workstationBuilder: {fileID: 101286914}
   inventoryMasterController: {fileID: 1576194817}
-  resetPlayerPrefs: 1
+  resetPlayerPrefs: 0
   messageBoard: {fileID: 73703033}
   messageBoardText: {fileID: 896375725}
 --- !u!4 &1982940242
@@ -45410,11 +45410,11 @@ MonoBehaviour:
     totalChoices: 0a000000140000001e0000002800000032000000
     expRewardChoices: 0a000000140000001e0000002800000032000000
   - name: items of 2 stars and above
-    levelRequirement: 0
+    levelRequirement: 2
     totalChoices: 0a000000140000001e0000003200000064000000
     expRewardChoices: 0f0000001e0000002d0000004b00000096000000
   - name: items of 3 stars and above
-    levelRequirement: 2
+    levelRequirement: 3
     totalChoices: 0a000000140000001e0000003200000064000000
     expRewardChoices: 14000000280000003c00000064000000c8000000
   - name: barrel
