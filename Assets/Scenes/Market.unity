@@ -5577,8 +5577,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae200198889104e4691b73c1ed564110, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jobName: golden_statue
-  jobDisplayedName: Box
+  jobName: Golden Statue
+  jobDisplayedName: golden_statue
   appearingDays: 01000000020000000300000004000000050000000600000000000000
 --- !u!114 &854457664
 MonoBehaviour:
@@ -5653,7 +5653,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 6d0e84a209d1ac74e9ed35b252cfeb0d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3bf134fa92ec2be4db575b5824d6a227, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
