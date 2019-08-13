@@ -46851,7 +46851,7 @@ MonoBehaviour:
   workstationShopMasterController: {fileID: 472879506}
   workstationBuilder: {fileID: 101286914}
   inventoryMasterController: {fileID: 1576194817}
-  resetPlayerPrefs: 1
+  resetPlayerPrefs: 0
   messageBoard: {fileID: 73703033}
   messageBoardText: {fileID: 896375725}
   levelUpCanvas: {fileID: 805511680}
@@ -54065,12 +54065,12 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 6fab17e7177e14645b21a065f6c707ac, type: 3}
-    m_FontSize: 58
+    m_FontSize: 84
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 90
-    m_Alignment: 5
+    m_MaxSize: 100
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -55765,8 +55765,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 380, y: -61}
-  m_SizeDelta: {x: 322.1, y: 95.8}
+  m_AnchoredPosition: {x: 487, y: -26.6}
+  m_SizeDelta: {x: 322.1, y: 130.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &8740044980269655952
 PrefabInstance:
