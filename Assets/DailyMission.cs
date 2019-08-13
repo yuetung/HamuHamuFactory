@@ -14,6 +14,12 @@ public class DailyMission : MonoBehaviour
     private DateTime bossNextVisit;
     public Mission[] allMissions;
     private List<Mission> availableMissions;
+    public GameObject BossVisitDialogue;
+    public Text BossVisitDialogueText;
+    public Button YesButton;
+    public Button NoButton;
+    public Button OkButton;
+    private int bossVisitState = 0;
 
     [System.Serializable]
     public class Mission
@@ -51,7 +57,8 @@ public class DailyMission : MonoBehaviour
             bossNextVisit = DateTime.FromBinary(temp);
             if (DateTime.Now.Date>= bossNextVisit)
             {
-                print("boss says hello");
+                bossVisitState = 0;
+                BossVisit();
                 PlayerPrefs.SetInt("mission_total_completed", 0);
                 bossNextVisit = DateTime.Now.Date.AddDays(3);
                 PlayerPrefs.SetString("boss_next_visit", bossNextVisit.ToBinary().ToString());
@@ -88,6 +95,59 @@ public class DailyMission : MonoBehaviour
         //PlayerPrefs.SetInt("mission_exp_2", 8);
         UpdateBoard();
 
+    }
+
+    public void BossVisit()
+    {
+        BossVisitDialogue.SetActive(true);
+        BossVisitDialogueText.text = "Meow~ So how hass it been? Have you restored my factory back to GREATNESS yet?";
+        YesButton.gameObject.SetActive(true);
+        NoButton.gameObject.SetActive(true);
+        OkButton.gameObject.SetActive(false);
+    }
+
+    public void YesButtonClicked()
+    {
+        BossVisitDialogueText.text = "Awesome! Let's review your progress: you've completed a total of "+PlayerPrefs.GetInt("mission_total_completed").ToString() +" jobs since we last meet!";
+        YesButton.gameObject.SetActive(false);
+        NoButton.gameObject.SetActive(false);
+        OkButton.gameObject.SetActive(true);
+    }
+
+    public void NoButtonClicked()
+    {
+        BossVisitDialogueText.text = "Hmm... Let's review your progress: you've completed a total of " + PlayerPrefs.GetInt("mission_total_completed").ToString() + " jobs since we last meet!";
+        YesButton.gameObject.SetActive(false);
+        NoButton.gameObject.SetActive(false);
+        OkButton.gameObject.SetActive(true);
+    }
+
+    public void OkButtonClicked()
+    {
+        switch (bossVisitState)
+        {
+            case 0:
+                if (PlayerPrefs.GetInt("mission_total_completed") < 3)
+                {
+                    BossVisitDialogueText.text = "What have you been doing!!! Really?!! I'm so disappointed!!!";
+                }
+                else if (PlayerPrefs.GetInt("mission_total_completed") < 8)
+                {
+                    BossVisitDialogueText.text = "That's a bit.... disappointing.... (maybe I should eat you up instead?) Anyway, here's something for your effort";
+                }
+                else if (PlayerPrefs.GetInt("mission_total_completed") < 15)
+                {
+                    BossVisitDialogueText.text = "Not too bad! Let me reward you with a little something~";
+                }
+                else if (PlayerPrefs.GetInt("mission_total_completed") < 15)
+                {
+                    BossVisitDialogueText.text = "Not too bad! Let me reward you with a little something~";
+                }
+                bossVisitState = 1;
+                break;
+        }
+        BossVisitDialogueText.text = "Hmm... Let's review your progress: you've completed a total of " + PlayerPrefs.GetInt("mission_total_completed").ToString() + " jobs since we last meet!";
+        YesButton.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
