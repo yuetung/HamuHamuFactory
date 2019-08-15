@@ -1312,7 +1312,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 7c39177045837e7428aa4d9ba724770a, type: 3}
+      objectReference: {fileID: 8300000, guid: bbb661d53a6bc9543ad12bd29d9b0fd5, type: 3}
     - target: {fileID: 1539820243856568010, guid: 8336b4dde072bab46ae54eac5a88d50a,
         type: 3}
       propertyPath: Loop
