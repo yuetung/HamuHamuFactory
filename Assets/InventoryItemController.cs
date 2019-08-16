@@ -41,11 +41,13 @@ public class InventoryItemController : MonoBehaviour
 
     public void ShowName()
     {
+        _name_background = gameObject.transform.Find("NameBackground").gameObject;
         _name_background.SetActive(true);
     }
 
     public void DisableName()
     {
+        _name_background = gameObject.transform.Find("NameBackground").gameObject;
         _name_background.SetActive(false);
     }
 

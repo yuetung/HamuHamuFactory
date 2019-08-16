@@ -5,10 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class HomepageButtons : MonoBehaviour
 {
+    public GameObject continueButton;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (!PlayerPrefs.HasKey("tuorialStage"))
+        {
+            continueButton.SetActive(false);
+        }
     }
 
     // Update is called once per frame

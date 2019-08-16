@@ -292,7 +292,7 @@ public class WorkerShopMasterController : MonoBehaviour
                 }
             }
             int tier = proficiencStat0 + proficiencStat1 - 1;
-            int base_price = (tier+1)*1000+ UnityEngine.Random.Range(-500, 500);
+            int base_price = (tier+1)*500+ UnityEngine.Random.Range(-300, 300);
             string colorStr = colors[UnityEngine.Random.Range(0, colors.Count)];
             int spriteNum = UnityEngine.Random.Range(0, init_sprites.Length);
 
