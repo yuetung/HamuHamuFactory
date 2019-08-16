@@ -20,6 +20,7 @@ public class DailyMission : MonoBehaviour
     public Button NoButton;
     public Button OkButton;
     private int bossVisitState = 0;
+    private int bossVisitBaseReward = 0;
 
     [System.Serializable]
     public class Mission
@@ -124,30 +125,49 @@ public class DailyMission : MonoBehaviour
 
     public void OkButtonClicked()
     {
+        print("OkButtonClicked");
         switch (bossVisitState)
         {
             case 0:
+                print("case0");
                 if (PlayerPrefs.GetInt("mission_total_completed") < 3)
                 {
                     BossVisitDialogueText.text = "What have you been doing!!! Really?!! I'm so disappointed!!!";
+                    bossVisitBaseReward = 0;
                 }
                 else if (PlayerPrefs.GetInt("mission_total_completed") < 8)
                 {
                     BossVisitDialogueText.text = "That's a bit.... disappointing.... (maybe I should eat you up instead?) Anyway, here's something for your effort";
+                    bossVisitBaseReward = 100;
                 }
                 else if (PlayerPrefs.GetInt("mission_total_completed") < 15)
                 {
-                    BossVisitDialogueText.text = "Not too bad! Let me reward you with a little something~";
+                    BossVisitDialogueText.text = "Not bad! Let me reward you with a little something~";
+                    bossVisitBaseReward = 300;
                 }
-                else if (PlayerPrefs.GetInt("mission_total_completed") < 15)
+                else if (PlayerPrefs.GetInt("mission_total_completed") < 30)
                 {
-                    BossVisitDialogueText.text = "Not too bad! Let me reward you with a little something~";
+                    BossVisitDialogueText.text = "Good work! You're really making progress right there! Let me reward you with a something great~";
+                    bossVisitBaseReward = 500;
+                }
+                else if (PlayerPrefs.GetInt("mission_total_completed") < 50)
+                {
+                    BossVisitDialogueText.text = "Hohoho! You are doing really well! (fortunately I didn't eat him up earlier). Here's something for your effort";
+                    bossVisitBaseReward = 800;
+                }
+                else
+                {
+                    BossVisitDialogueText.text = "My my my... With this I'm sure you'll be able to restore HamuHamu Factory in no time!!! Here's something for your effort";
+                    bossVisitBaseReward = 1000;
                 }
                 bossVisitState = 1;
                 break;
+            case 1:
+                BossVisitDialogue.SetActive(false);
+                GameManager.instance.GainMoney(bossVisitBaseReward*GameManager.instance.currentLevel);
+                break;
+
         }
-        BossVisitDialogueText.text = "Hmm... Let's review your progress: you've completed a total of " + PlayerPrefs.GetInt("mission_total_completed").ToString() + " jobs since we last meet!";
-        YesButton.gameObject.SetActive(false);
     }
 
     // Update is called once per frame

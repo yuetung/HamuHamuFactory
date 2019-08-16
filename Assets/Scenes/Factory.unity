@@ -31797,8 +31797,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1982940243}
-        m_MethodName: YesSelected
+      - m_Target: {fileID: 1982940244}
+        m_MethodName: YesButtonClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -37293,8 +37293,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1982940243}
-        m_MethodName: NoSelected
+      - m_Target: {fileID: 1982940244}
+        m_MethodName: NoButtonClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -40384,7 +40384,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: b8cd8a99471e23b498096db8c959bf36, type: 3}
+  m_audioClip: {fileID: 8300000, guid: ec98565d40c51594bb7dc524a1b33bdb, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.28
   m_Pitch: 1
@@ -46044,7 +46044,7 @@ MonoBehaviour:
   workstationShopMasterController: {fileID: 472879506}
   workstationBuilder: {fileID: 101286914}
   inventoryMasterController: {fileID: 1576194817}
-  resetPlayerPrefs: 1
+  resetPlayerPrefs: 0
   messageBoard: {fileID: 73703033}
   messageBoardText: {fileID: 896375725}
 --- !u!4 &1982940242
@@ -52168,8 +52168,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1982940243}
-        m_MethodName: OkSelected
+      - m_Target: {fileID: 1982940244}
+        m_MethodName: OkButtonClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
