@@ -9,6 +9,8 @@ public class DailyMission : MonoBehaviour
     public Text[] missionTexts;
     public Text[] missionAmounts;
     public Text[] missionExps;
+    public Transform[] stampPositions;
+    public GameObject stampPrefab;
     public Text totalCompleted;
     public Text bossVisitDate;
     private DateTime bossNextVisit;
@@ -237,6 +239,8 @@ public class DailyMission : MonoBehaviour
         GameManager.instance.GainExp(PlayerPrefs.GetInt("mission_exp_" + i));
         int totalCompleted = PlayerPrefs.GetInt("mission_total_completed");
         PlayerPrefs.SetInt("mission_total_completed", totalCompleted+1);
+        GameObject stamp = Instantiate(stampPrefab,stampPositions[i]);
+        stamp.transform.localPosition = Vector2.zero;
         GenerateMission(i);
     }
 

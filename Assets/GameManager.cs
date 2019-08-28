@@ -31,6 +31,10 @@ public class GameManager : MonoBehaviour
     public bool resetPlayerPrefs = false;
     public GameObject messageBoard;
     public Text messageBoardText;
+    public GameObject levelUpCanvas;
+    public Text levelUpCanvasText;
+    public GameObject levelUpUnlockAreaTitle;
+    public Text levelUpUnlockAreaText;
 
     public class Employee
     {
@@ -229,12 +233,46 @@ public class GameManager : MonoBehaviour
     public void LevelUp()
     {
         // play level up animation here
-        if (currentLevel%3==0)
+        if (currentLevel%2==0)
             roomSizeManager.AddRoom();  // add room every 1 levels?
         dailyMission.UpdateAvailableMissions();
+        levelUpCanvas.SetActive(true);
         if (currentLevel == 2)
         {
             gameObject.GetComponent<TutorialMode>().ShowDialogueLevel2();
+            levelUpCanvasText.text = "Factory size increased! \n\nReceived 500 Gold";
+            levelUpUnlockAreaTitle.SetActive(true);
+            levelUpUnlockAreaText.text = "Rodent Beach";
+            GainMoney(500);
+        }
+        else if (currentLevel == 3)
+        {
+            levelUpCanvasText.text = "Received 1000 Gold";
+            levelUpUnlockAreaTitle.SetActive(true);
+            levelUpUnlockAreaText.text = "Felix Park";
+            GainMoney(1000);
+        }
+        else if(currentLevel == 4)
+        {
+            levelUpCanvasText.text = "Factory size increased! \n\nReceived 2000 Gold";
+            levelUpUnlockAreaTitle.SetActive(true);
+            levelUpUnlockAreaText.text = "Pipsqueak Marketplace";
+            GainMoney(2000);
+        }
+        else if(currentLevel == 5)
+        {
+            levelUpCanvasText.text = "Factory Upgraded! \n\nReceived 3000 Gold";
+            roomSizeManager.RefreshAll();
+            levelUpUnlockAreaTitle.SetActive(false);
+            levelUpUnlockAreaText.text = "";
+            GainMoney(3000);
+        }
+        else
+        {
+            levelUpCanvasText.text = "Received 3000 Gold";
+            levelUpUnlockAreaTitle.SetActive(false);
+            levelUpUnlockAreaText.text = "";
+            GainMoney(3000);
         }
         Debug.Log("level up!");
         gameObject.GetComponent<TutorialMode>().DisableButtonsWithLevel();
