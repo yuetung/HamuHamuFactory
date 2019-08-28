@@ -3660,6 +3660,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 143008141}
   m_CullTransparentMesh: 0
+--- !u!1 &143398284 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3448448307888782718, guid: 3ba47ea242e3db64ca0faaf0ac0a409b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1272564530082695052}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &151725417
 GameObject:
   m_ObjectHideFlags: 0
@@ -20133,46 +20139,67 @@ MonoBehaviour:
     material_nums: 01000000
   - display_name: Wooden Table
     variable_name: wooden_table
-    unit_reward: 25
+    unit_reward: 35
     sprite: {fileID: 21300000, guid: 73f5f0d7bc0dc6149a0f6d2dbb04311a, type: 3}
     productionSprites:
     - {fileID: 21300000, guid: 0db5dd78bb5f54740a1de59d818dc02b, type: 3}
     - {fileID: 21300000, guid: 73f5f0d7bc0dc6149a0f6d2dbb04311a, type: 3}
-    production_time: 8
+    production_time: 6
     workstation_names:
     - saw
-    workstation_nums: 02000000
+    workstation_nums: 01000000
     material_names:
     - wood
     material_nums: 03000000
-  - display_name: Barrel Table
-    variable_name: barrel_table
-    unit_reward: 200
-    sprite: {fileID: 21300000, guid: 51fa74a3e1be2374ab32f852493da252, type: 3}
+  - display_name: Oildrum
+    variable_name: oildrum
+    unit_reward: 55
+    sprite: {fileID: 21300000, guid: 42b839a870046924c9ccddce6b150243, type: 3}
     productionSprites:
-    - {fileID: 21300000, guid: 0db5dd78bb5f54740a1de59d818dc02b, type: 3}
-    - {fileID: 21300000, guid: e08d84f0ae831e94fa82f7d2ec4ea1e8, type: 3}
-    - {fileID: 21300000, guid: 73f5f0d7bc0dc6149a0f6d2dbb04311a, type: 3}
-    production_time: 30
+    - {fileID: 21300000, guid: f02ddf0ee227caf4c9a80a4c3f785ff1, type: 3}
+    - {fileID: 21300000, guid: 269b88f743f9be9478674ecc78ed74ae, type: 3}
+    - {fileID: 21300000, guid: 42b839a870046924c9ccddce6b150243, type: 3}
+    production_time: 7
     workstation_names:
-    - hammer
     - saw
-    workstation_nums: 0200000002000000
+    - hammer
+    workstation_nums: 0100000002000000
     material_names:
-    - wood
-    material_nums: 0f000000
-  - display_name: Box
-    variable_name: box
-    unit_reward: 30
-    sprite: {fileID: 21300000, guid: 95916d325f803714383a711231e032bd, type: 3}
-    productionSprites: []
-    production_time: 1
+    - steel
+    material_nums: 01000000
+  - display_name: Steel pipe
+    variable_name: steel_pipe
+    unit_reward: 60
+    sprite: {fileID: 21300000, guid: b9285b17e0038b047b09e4c3d148a05f, type: 3}
+    productionSprites:
+    - {fileID: 21300000, guid: f02ddf0ee227caf4c9a80a4c3f785ff1, type: 3}
+    - {fileID: 21300000, guid: e29b8776d9f3bfb4986936f82b2c712d, type: 3}
+    - {fileID: 21300000, guid: b9285b17e0038b047b09e4c3d148a05f, type: 3}
+    production_time: 3
     workstation_names:
+    - laser
+    - hammer
+    workstation_nums: 0100000002000000
+    material_names:
+    - steel
+    material_nums: 02000000
+  - display_name: Golden Statue
+    variable_name: golden_statue
+    unit_reward: 1000
+    sprite: {fileID: 21300000, guid: 3fd9b58a2f4b6e24fb97ddfb7175ef65, type: 3}
+    productionSprites:
+    - {fileID: 21300000, guid: 3edb080e8d9d41740ad193644063c64e, type: 3}
+    - {fileID: 21300000, guid: 840fb1112913e13428f4f4b64777c74a, type: 3}
+    - {fileID: 21300000, guid: 3fd9b58a2f4b6e24fb97ddfb7175ef65, type: 3}
+    - {fileID: 21300000, guid: 9ecd746df10744542a5acd0f816a99a4, type: 3}
+    production_time: 6
+    workstation_names:
+    - saw
     - hammer
     - laser
-    workstation_nums: 0200000001000000
+    workstation_nums: 030000000300000002000000
     material_names:
-    - wood
+    - gold
     material_nums: 05000000
 --- !u!114 &874436048
 MonoBehaviour:
@@ -31596,6 +31623,11 @@ PrefabInstance:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 4da806f0d4fd6884fb8e4bb781707ab9, type: 3}
+    - target: {fileID: 1539820243856568010, guid: 8336b4dde072bab46ae54eac5a88d50a,
+        type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1539820243856568011, guid: 8336b4dde072bab46ae54eac5a88d50a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8336b4dde072bab46ae54eac5a88d50a, type: 3}
@@ -36132,6 +36164,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8931743855a88fd46a59ed0917c8e741, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1579283147 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 11694740830492411, guid: 3ba47ea242e3db64ca0faaf0ac0a409b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1272564530082695052}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1590286912
 GameObject:
   m_ObjectHideFlags: 0
@@ -43280,6 +43318,12 @@ MonoBehaviour:
   m_workstationStats: 
   workerShopMasterController: {fileID: 2051126761}
   confirmationWindowController: {fileID: 1199564675}
+--- !u!1 &1825792921 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8770968803370644373, guid: 3ba47ea242e3db64ca0faaf0ac0a409b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1272564530082695052}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1828309557
 GameObject:
   m_ObjectHideFlags: 0
@@ -46044,7 +46088,7 @@ MonoBehaviour:
   workstationShopMasterController: {fileID: 472879506}
   workstationBuilder: {fileID: 101286914}
   inventoryMasterController: {fileID: 1576194817}
-  resetPlayerPrefs: 0
+  resetPlayerPrefs: 1
   messageBoard: {fileID: 73703033}
   messageBoardText: {fileID: 896375725}
 --- !u!4 &1982940242
@@ -46095,8 +46139,11 @@ MonoBehaviour:
   MaterialShopButton: {fileID: 1305262962}
   EmploymentAgencyButton: {fileID: 1327079763}
   BeachButton: {fileID: 1671471983}
+  BeachPlate: {fileID: 1825792921}
   ParkButton: {fileID: 352492570}
+  ParkPlate: {fileID: 143398284}
   MarketplaceButton: {fileID: 292060030}
+  MarketplacePlate: {fileID: 1579283147}
   productionRequestMenu: {fileID: 874436045}
   workstationShopMenu: {fileID: 472879504}
   employmentAgencyMenu: {fileID: 2051126758}
@@ -46143,7 +46190,7 @@ MonoBehaviour:
     totalChoices: 0a000000140000001e0000003200000064000000
     expRewardChoices: 0f0000001e0000002d0000004b00000096000000
   - name: items of 3 stars and above
-    levelRequirement: 3
+    levelRequirement: 4
     totalChoices: 0a000000140000001e0000003200000064000000
     expRewardChoices: 14000000280000003c00000064000000c8000000
   - name: barrel
@@ -46154,6 +46201,18 @@ MonoBehaviour:
     levelRequirement: 2
     totalChoices: 050000000a0000000f0000001400000019000000
     expRewardChoices: 0f0000001e0000002d0000003c0000004b000000
+  - name: oildrum
+    levelRequirement: 3
+    totalChoices: 050000000a0000000f0000001400000019000000
+    expRewardChoices: 14000000280000003c0000005000000064000000
+  - name: steel_pipe
+    levelRequirement: 3
+    totalChoices: 050000000a0000000f0000001400000019000000
+    expRewardChoices: 2300000046000000690000008c000000af000000
+  - name: golden_statue
+    levelRequirement: 4
+    totalChoices: 050000000a0000000f0000001400000019000000
+    expRewardChoices: 64000000c80000002c01000090010000f4010000
   BossVisitDialogue: {fileID: 2142330475}
   BossVisitDialogueText: {fileID: 1611799061}
   YesButton: {fileID: 1363649485}
@@ -52971,6 +53030,21 @@ PrefabInstance:
       propertyPath: itemControllers.Array.size
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 462298571426186284, guid: 16d367f9a1070384c96d68f85017302e,
+        type: 3}
+      propertyPath: fixedShopItemEntries.Array.data[0].base_price
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 462298571426186284, guid: 16d367f9a1070384c96d68f85017302e,
+        type: 3}
+      propertyPath: fixedShopItemEntries.Array.data[1].base_price
+      value: 1200
+      objectReference: {fileID: 0}
+    - target: {fileID: 462298571426186284, guid: 16d367f9a1070384c96d68f85017302e,
+        type: 3}
+      propertyPath: fixedShopItemEntries.Array.data[2].base_price
+      value: 2000
+      objectReference: {fileID: 0}
     - target: {fileID: 462298571542850691, guid: 16d367f9a1070384c96d68f85017302e,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -53117,6 +53191,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 542496016149945743, guid: f2ccf4ef1155f934e8cce8782228ca99,
         type: 3}
+      propertyPath: fixedShopItemEntries.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 542496016149945743, guid: f2ccf4ef1155f934e8cce8782228ca99,
+        type: 3}
       propertyPath: fixedShopItemEntries.Array.data[0].unit_price
       value: 5
       objectReference: {fileID: 0}
@@ -53130,6 +53209,33 @@ PrefabInstance:
       propertyPath: fixedShopItemEntries.Array.data[0].sprite
       value: 
       objectReference: {fileID: 21300000, guid: f944da86ac41c0444b87502e6a3a58bb,
+        type: 3}
+    - target: {fileID: 542496016149945743, guid: f2ccf4ef1155f934e8cce8782228ca99,
+        type: 3}
+      propertyPath: fixedShopItemEntries.Array.data[2].display_name
+      value: Gold
+      objectReference: {fileID: 0}
+    - target: {fileID: 542496016149945743, guid: f2ccf4ef1155f934e8cce8782228ca99,
+        type: 3}
+      propertyPath: fixedShopItemEntries.Array.data[2].variable_name
+      value: gold
+      objectReference: {fileID: 0}
+    - target: {fileID: 542496016149945743, guid: f2ccf4ef1155f934e8cce8782228ca99,
+        type: 3}
+      propertyPath: fixedShopItemEntries.Array.data[2].unit_price
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 542496016149945743, guid: f2ccf4ef1155f934e8cce8782228ca99,
+        type: 3}
+      propertyPath: fixedShopItemEntries.Array.data[2].sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5323579f37d68d44bb96fb5ab79a2107,
+        type: 3}
+    - target: {fileID: 542496016149945743, guid: f2ccf4ef1155f934e8cce8782228ca99,
+        type: 3}
+      propertyPath: fixedShopItemEntries.Array.data[1].sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5e2084f8bc572e440aad3326737cb095,
         type: 3}
     - target: {fileID: 542496017624115527, guid: f2ccf4ef1155f934e8cce8782228ca99,
         type: 3}
@@ -53247,6 +53353,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2410425565052011368, guid: 3ba47ea242e3db64ca0faaf0ac0a409b,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2410425565052011368, guid: 3ba47ea242e3db64ca0faaf0ac0a409b,
+        type: 3}
+      propertyPath: m_Colors.m_DisabledColor.a
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 303527010668915116, guid: 3ba47ea242e3db64ca0faaf0ac0a409b,
         type: 3}

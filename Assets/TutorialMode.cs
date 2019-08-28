@@ -28,8 +28,11 @@ public class TutorialMode : MonoBehaviour
     public Button MaterialShopButton;
     public Button EmploymentAgencyButton;
     public Button BeachButton;
+    public GameObject BeachPlate;
     public Button ParkButton;
+    public GameObject ParkPlate;
     public Button MarketplaceButton;
+    public GameObject MarketplacePlate;
 
     public GameObject productionRequestMenu;
     public GameObject workstationShopMenu;
@@ -46,6 +49,10 @@ public class TutorialMode : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameManager.instance.GainProductionJob("golden_statue", "Golden Statue", false);
+        GameManager.instance.GainProductionJob("steel_pipe", "Steel pipe", false);
+        GameManager.instance.GainProductionJob("oildrum", "Oildrum", false);
+        DisableButtonsWithLevel();
         if (!PlayerPrefs.HasKey("tuorialStage"))
         {
             PlayerPrefs.SetInt("tuorialStage", 0);
@@ -58,6 +65,31 @@ public class TutorialMode : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void DisableButtonsWithLevel()
+    {
+        BeachButton.interactable = false;
+        ParkButton.interactable = false;
+        MarketplaceButton.interactable = false;
+        BeachPlate.SetActive(false);
+        ParkPlate.SetActive(false);
+        MarketplacePlate.SetActive(false);
+        if (PlayerPrefs.GetInt("currentLevel") >= 2)
+        {
+            BeachButton.interactable = true;
+            BeachPlate.SetActive(true);
+        }
+        if (PlayerPrefs.GetInt("currentLevel") >= 3)
+        {
+            ParkButton.interactable = true;
+            ParkPlate.SetActive(true);
+        }
+        if (PlayerPrefs.GetInt("currentLevel") >= 4)
+        {
+            MarketplaceButton.interactable = true;
+            MarketplacePlate.SetActive(true);
+        }
     }
 
     public void YesSelected()
@@ -446,9 +478,7 @@ public class TutorialMode : MonoBehaviour
         WorkstationShopButton.interactable = true;
         MaterialShopButton.interactable = true;
         EmploymentAgencyButton.interactable = true;
-        BeachButton.interactable = true;
-        ParkButton.interactable = true;
-        MarketplaceButton.interactable = true;
+        DisableButtonsWithLevel();
     }
 
     public void OnApplicationQuit()

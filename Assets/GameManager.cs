@@ -50,6 +50,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 5.0f;
+
         instance = this;
         if (resetPlayerPrefs)
         {
@@ -144,6 +146,7 @@ public class GameManager : MonoBehaviour
             {
                 newExp -= expRequired[currentLevel - 1];
                 currentLevel += 1;
+                PlayerPrefs.SetInt("currentLevel", currentLevel);
                 LevelUp();
             }
             currentExp = newExp;
@@ -234,6 +237,7 @@ public class GameManager : MonoBehaviour
             gameObject.GetComponent<TutorialMode>().ShowDialogueLevel2();
         }
         Debug.Log("level up!");
+        gameObject.GetComponent<TutorialMode>().DisableButtonsWithLevel();
     }
 
     public void GainWorkstation(string name, string displayed_name, int amount=1, bool show_message = false)

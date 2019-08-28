@@ -60,7 +60,6 @@ public class DailyMission : MonoBehaviour
             {
                 bossVisitState = 0;
                 BossVisit();
-                PlayerPrefs.SetInt("mission_total_completed", 0);
                 bossNextVisit = DateTime.Now.Date.AddDays(3);
                 PlayerPrefs.SetString("boss_next_visit", bossNextVisit.ToBinary().ToString());
             }
@@ -165,6 +164,8 @@ public class DailyMission : MonoBehaviour
             case 1:
                 BossVisitDialogue.SetActive(false);
                 GameManager.instance.GainMoney(bossVisitBaseReward*GameManager.instance.currentLevel);
+                PlayerPrefs.SetInt("mission_total_completed", 0);
+                UpdateBoard();
                 break;
 
         }
