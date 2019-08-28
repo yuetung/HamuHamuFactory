@@ -20582,9 +20582,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCharacterController: {fileID: 1751286915}
-  start: {fileID: 21300000, guid: 7bf5779a3b5b89e46a57f451b89bd420, type: 3}
-  repeatable: {fileID: 21300000, guid: f33a9d63ccc598a4d8f4b44ee28dadfc, type: 3}
-  end: {fileID: 21300000, guid: f33a9d63ccc598a4d8f4b44ee28dadfc, type: 3}
+  start:
+  - {fileID: 21300000, guid: 2b526230fd59512499a5a750222eafd6, type: 3}
+  - {fileID: 21300000, guid: 3fd9b58a2f4b6e24fb97ddfb7175ef65, type: 3}
+  repeatable:
+  - {fileID: 21300000, guid: f33a9d63ccc598a4d8f4b44ee28dadfc, type: 3}
+  - {fileID: 21300000, guid: 6d0e84a209d1ac74e9ed35b252cfeb0d, type: 3}
+  end:
+  - {fileID: 21300000, guid: f33a9d63ccc598a4d8f4b44ee28dadfc, type: 3}
+  - {fileID: 21300000, guid: 6d0e84a209d1ac74e9ed35b252cfeb0d, type: 3}
   starting_roomSize: 4
   roomSize: 4
   roomHeight: 1756
@@ -46287,7 +46293,7 @@ MonoBehaviour:
   workstationShopMasterController: {fileID: 472879506}
   workstationBuilder: {fileID: 101286914}
   inventoryMasterController: {fileID: 1576194817}
-  resetPlayerPrefs: 0
+  resetPlayerPrefs: 1
   messageBoard: {fileID: 73703033}
   messageBoardText: {fileID: 896375725}
   levelUpCanvas: {fileID: 805511680}
@@ -53563,6 +53569,26 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9072115955380178574, guid: 3ba47ea242e3db64ca0faaf0ac0a409b,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2147273970}
+    - target: {fileID: 9072115955380178574, guid: 3ba47ea242e3db64ca0faaf0ac0a409b,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: goToPlace
+      objectReference: {fileID: 0}
+    - target: {fileID: 9072115955380178574, guid: 3ba47ea242e3db64ca0faaf0ac0a409b,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9072115955380178574, guid: 3ba47ea242e3db64ca0faaf0ac0a409b,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Market
+      objectReference: {fileID: 0}
     - target: {fileID: 2410425565052011368, guid: 3ba47ea242e3db64ca0faaf0ac0a409b,
         type: 3}
       propertyPath: m_Interactable
@@ -53572,6 +53598,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Colors.m_DisabledColor.a
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2410425565052011368, guid: 3ba47ea242e3db64ca0faaf0ac0a409b,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2147273970}
+    - target: {fileID: 2410425565052011368, guid: 3ba47ea242e3db64ca0faaf0ac0a409b,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: goToPlace
+      objectReference: {fileID: 0}
+    - target: {fileID: 2410425565052011368, guid: 3ba47ea242e3db64ca0faaf0ac0a409b,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2410425565052011368, guid: 3ba47ea242e3db64ca0faaf0ac0a409b,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Park
       objectReference: {fileID: 0}
     - target: {fileID: 303527010668915116, guid: 3ba47ea242e3db64ca0faaf0ac0a409b,
         type: 3}
