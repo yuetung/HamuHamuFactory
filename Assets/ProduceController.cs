@@ -74,6 +74,7 @@ public class ProduceController : MonoBehaviour
     {
         move = false;
         workstationBuilder.Teleport();
+        gameObject.GetComponent<AudioSource>().enabled = true;
         _animator.SetTrigger("disappear");
     }
 
@@ -82,6 +83,7 @@ public class ProduceController : MonoBehaviour
         GameManager.instance.GainMoney(goldGained * (100+(averageStars-2)*10)/100);
         GameManager.instance.Produce(production_name);
         GameManager.instance.Produce(averageStars.ToString() + "stars_item");
+
         //GameManager.instance.GainExp(goldGained/2);
         Destroy(gameObject);
     }

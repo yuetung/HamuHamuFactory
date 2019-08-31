@@ -49,9 +49,6 @@ public class TutorialMode : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameManager.instance.GainProductionJob("golden_statue", "Golden Statue", false);
-        GameManager.instance.GainProductionJob("steel_pipe", "Steel pipe", false);
-        GameManager.instance.GainProductionJob("oildrum", "Oildrum", false);
         DisableButtonsWithLevel();
         if (!PlayerPrefs.HasKey("tuorialStage"))
         {
@@ -171,7 +168,7 @@ public class TutorialMode : MonoBehaviour
                 break;
             case 11:
                 tutorialDialogue.SetActive(false);
-                GameManager.instance.GainMoney(1500);
+                GameManager.instance.GainMoney(800);
                 PlayerPrefs.SetInt("tuorialStage", 12);
                 break;
             case 13:

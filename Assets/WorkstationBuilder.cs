@@ -176,6 +176,7 @@ public class WorkstationBuilder : MonoBehaviour
     {
         InvokeRepeating("Produce", 3f, jobRequestMasterController.GetProductionTime(PlayerPrefs.GetString("currentProductionJob")));
         startedProduction = true;
+        gameObject.GetComponent<AudioSource>().enabled = true;
         PlayerPrefs.SetInt("ProductionRunning", 1);
         OnOffButton.sprite = OffButtonSprite;
         
@@ -203,6 +204,7 @@ public class WorkstationBuilder : MonoBehaviour
         CancelInvoke();
         DeleteAllCurrentProduces();
         startedProduction = false;
+        gameObject.GetComponent<AudioSource>().enabled = false;
         PlayerPrefs.SetInt("ProductionRunning", 0);
         OnOffButton.sprite = OnButtonSprite;
         

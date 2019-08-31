@@ -54,8 +54,6 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Time.timeScale = 5.0f;
-
         instance = this;
         if (resetPlayerPrefs)
         {
@@ -392,5 +390,10 @@ public class GameManager : MonoBehaviour
     public void Produce(string name)
     {
         dailyMission.Produce(name);
+    }
+
+    public void ChangeTestSpeed(float f)
+    {
+        Time.timeScale = f;
     }
 }
